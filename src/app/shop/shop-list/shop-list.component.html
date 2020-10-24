@@ -1,1 +1,7 @@
-<p>shop-list works!</p>
+<div class="form-control">
+  <input type="text" placeholder="Find a product" [(ngModel)]="productName">
+</div>
+<div *ngIf="products$ | async | search:productName  as products  " class="dashboard">
+  <app-food *ngFor="let product of products " [product]="product" class="box">
+  </app-food>
+</div>

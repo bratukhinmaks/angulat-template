@@ -2,7 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {map} from 'rxjs/operators';
-import {FbResponce, Product} from '../interfaces';
+import {FbResponce, Product} from '../models';
+
 
 @Injectable({
   providedIn: 'root'

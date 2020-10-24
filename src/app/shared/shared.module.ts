@@ -3,8 +3,13 @@ import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {QuillModule} from 'ngx-quill';
+import { SearchPipe } from './pipes/search.pipe';
+import {CartComponent} from './components/cart/cart.component';
 
-const components = [];
+const components = [
+  SearchPipe,
+  CartComponent,
+];
 const moduls = [
   ReactiveFormsModule,
   FormsModule,
@@ -15,7 +20,7 @@ const moduls = [
 
 @NgModule({
   declarations: [
-    ...components
+    ...components,
   ],
   imports: [
     CommonModule,

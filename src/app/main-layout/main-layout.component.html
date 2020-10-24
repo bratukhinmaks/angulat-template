@@ -1,0 +1,17 @@
+<nav class="navbar bg-success">
+  <h2 routerLink="/">Recrut Task</h2>
+  <ul>
+    <li routerLinkActive="active">
+      <a routerLink="/main">Strona Główna</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/shop">Sklep</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/cart">Koszyk:{{prodServ.cartProducts.length}}</a>
+    </li>
+  </ul>
+</nav>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
