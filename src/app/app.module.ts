@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {MainModule} from './main/main.module';
+import {SharedModule} from './shared/shared.module';
+import {QuillModule} from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -10,7 +13,10 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MainModule,
+    SharedModule,
+    QuillModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
