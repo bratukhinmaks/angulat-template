@@ -3,6 +3,7 @@ import {ProductService} from '../../shared/services/product.service';
 import {Subscription} from 'rxjs';
 import {AuthService} from '../../shared/services/auth.service';
 import {AlertService} from '../../shared/services/alert.service';
+import {Product} from '../../shared/models';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -18,7 +19,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.pSub = this.prodSer.getAll().subscribe(
-      res => {
+      (res: Product[]) => {
         this.products = res;
       }
     );
@@ -34,8 +35,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   delete(id) {
     this.rSub = this.prodSer.deleteItem(id).subscribe(
       () => {
-        // tslint:disable-next-line:triple-equals
-        this.products = this.products.filter(product => product.id != id);
+        this.products = this.products.filter(product => product._id !== id);
       }
     )
     this.alertService.danger('Product zostal usunięty');

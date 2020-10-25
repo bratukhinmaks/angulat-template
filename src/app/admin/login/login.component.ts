@@ -21,7 +21,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.form = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null, [Validators.required, Validators.minLength(8)])
+      password: new FormControl(null, [Validators.required, Validators.minLength(8)]),
+      restaurantId: new FormControl(null, [Validators.required, Validators.minLength(8)])
     });
   }
   submit() {
@@ -33,7 +34,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       const user = {
         email: this.form.value.email,
         password: this.form.value.password,
-        returnSecureToken: true
+        restaurantId: this.form.value.restaurantId
       };
       this.sub = this.servise.login(user).subscribe(
         res => {

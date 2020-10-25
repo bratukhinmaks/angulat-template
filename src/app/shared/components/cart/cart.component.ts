@@ -49,6 +49,7 @@ export class CartComponent implements OnInit {
         price: this.price,
         adress: this.form.value.adress,
         payment: this.form.value.payment,
+        products: this.cartProducts,
         date: new Date(),
       };
       this.orderServ.createOrder(order).subscribe(

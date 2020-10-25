@@ -8,7 +8,7 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./order.component.sass']
 })
 export class OrderComponent implements OnInit, OnDestroy {
-  orders = [];
+  orders: any[] = [];
   oSub: Subscription;
   rSub: Subscription;
 
@@ -29,12 +29,5 @@ export class OrderComponent implements OnInit, OnDestroy {
       this.rSub.unsubscribe();
     }
 
-  }
-
-  remove(id) {
-    this.rSub = this.orderSer.deleteItem(id).subscribe(() => {
-        this.orders = this.orders.filter(order => order.id !== id);
-      }
-    );
   }
 }

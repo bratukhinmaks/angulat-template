@@ -6,7 +6,7 @@ import {ShopItemComponent} from './shop-item/shop-item.component';
 
 const routes: Routes = [
   {path: '', component: ShopListComponent, pathMatch: 'full'},
-  {path: '/:id', component: ShopItemComponent}
+  {path: ':id', component: ShopItemComponent}
 ];
 
 @NgModule({

@@ -17,17 +17,18 @@
       <td>{{ order.date | date : 'short'}}</td>
       <td>{{ order.phone }}</td>
       <td>{{ order.name }}</td>
-      <td>{{ order.adress }}</td>
+      <td>{{ order.address }}</td>
       <td>
-        <div *ngFor= "let item of order.order">
-          {{item.title}}
+        <div *ngFor= "let product of order.products">
+          <div *ngIf="product">
+            {{product.title}}
+          </div>
         </div>
-
       </td>
 
       <td>{{ order.price}} zł</td>
       <td>
-        <button class="btn btn-success" (click)="remove(order.id)">Completed</button>
+        <button class="btn btn-success" >Completed</button>
       </td>
     </tr>
     </tbody>

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {switchMap} from 'rxjs/operators';
+import {concatMap, switchMap} from 'rxjs/operators';
 import {ProductService} from '../../shared/services/product.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Product} from '../../shared/models';
@@ -15,6 +15,8 @@ export class EditPageComponent implements OnInit {
   form: FormGroup;
   product: Product;
   productChanged = false;
+  editDescription = false;
+  editImg = false;
 
   constructor(private route: ActivatedRoute, private productSer: ProductService, private router: Router, private alertServ: AlertService) {
   }
@@ -22,7 +24,7 @@ export class EditPageComponent implements OnInit {
   ngOnInit() {
 
     this.route.params.pipe(
-      switchMap(
+      concatMap(
         params => {
           return this.productSer.getById(params['id']);
         }
@@ -32,8 +34,8 @@ export class EditPageComponent implements OnInit {
       this.form = new FormGroup({
         title: new FormControl(this.product.title, Validators.required),
         cost: new FormControl(this.product.cost, Validators.required),
-        description: new FormControl(this.product.description, Validators.required),
-        imgUrl: new FormControl(this.product.imgUrl, Validators.required),
+        description: new FormControl('', Validators.required),
+        imgUrl: new FormControl('', Validators.required),
         category: new FormControl(this.product.category, Validators.required),
         weight: new FormControl(this.product.weight, Validators.required),
       });

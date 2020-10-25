@@ -14,33 +14,9 @@ export class OrderService {
   }
 
   createOrder(order) {
-    return this.http.post(`${environment.DbUrl}/order.json`, order)
-      .pipe(
-        map((res: FbResponce) => {
-          return {
-            ...order,
-            id: res.name,
-            date: new Date(order.date)
-          };
-        })
-      );
+    return this.http.post(`${environment.baseUrl}/order/${environment.shopId}`, order);
   }
-
-  deleteItem(id) {
-    return this.http.delete(`${environment.DbUrl}/order/${id}.json`);
-  }
-
   getAll() {
-    return this.http.get(`${environment.DbUrl}/order.json`)
-      .pipe(
-        map(res => {
-          return Object.keys(res)
-            .map(key => ({
-              ...res[key],
-              id: key,
-              date: new Date(res[key].date)
-            }));
-        })
-      );
+    return this.http.get(`${environment.baseUrl}/order/restaurant/${environment.shopId}`)
   }
 }

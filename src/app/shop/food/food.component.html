@@ -1,10 +1,9 @@
 <div class="text-center">
   <h3>{{product.title}}</h3>
-
   <div class="flex-center">
     <quill-view-html [content]="product.imgUrl"></quill-view-html>
   </div>
   <h3>Price: {{product.cost}} zł</h3>
-  <button [routerLink]="['/shop',product.id]" class="btn btn-dark">Read more</button>
-  <button [routerLink]="['/cart']" class="btn btn-dark" (click)="addProduct(product)">Add to cart</button>
+  <button [routerLink]="['/shop',product._id]" class="btn btn-dark">Read more</button>
+  <button  class="btn btn-dark" (click)="addProduct(product)">Add to cart</button>
 </div>

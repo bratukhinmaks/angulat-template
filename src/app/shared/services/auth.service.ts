@@ -11,30 +11,16 @@ export class AuthService {
   }
 
   login(User) {
-    return this.http.post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`, User)
-      .pipe(
-        tap(this.setToken)
-      );
+    return this.http.post(`${environment.baseUrl}/auth/login`, User)
+      .pipe(tap(this.setToken));
   }
 
   private setToken(response) {
-    if (response) {
-      const exoData = new Date(new Date().getTime() + +response.expiresIn * 1000);
-      localStorage.setItem('fb-token-exp', exoData.toString());
-      localStorage.setItem('fb-token', response.idToken);
-    } else {
-      localStorage.clear();
-    }
+    response ? localStorage.setItem('token', response.token) : localStorage.clear();
   }
 
   get token() {
-    const expToken = new Date(localStorage.getItem('fb-token-exp'));
-    if (new Date() > expToken) {
-      this.logout();
-      return null;
-    } else {
-      return localStorage.getItem('fb-token');
-    }
+  return localStorage.getItem('token');
   }
 
   logout() {

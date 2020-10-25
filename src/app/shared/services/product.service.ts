@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
-import {map} from 'rxjs/operators';
+import {concatAll, map} from 'rxjs/operators';
 import {FbResponce, Product} from '../models';
 
 
@@ -16,56 +16,23 @@ export class ProductService {
   }
 
   create(product) {
-    return this.http.post(`${environment.DbUrl}/products.json`, product)
-      .pipe(
-        map((res: FbResponce) => {
-          return {
-            ...product,
-            id: res.name,
-            date: new Date(product.date)
-          };
-        })
-      );
+    return this.http.post(`${environment.baseUrl}/product/${environment.shopId}`, product)
   }
 
   getAll() {
-    return this.http.get(`${environment.DbUrl}/products.json`)
-      .pipe(
-        map(res => {
-          return Object.keys(res)
-            .map(key => ({
-              ...res[key],
-              id: key,
-              date: new Date(res[key].date)
-            }));
-        })
-      );
+    return this.http.get(`${environment.baseUrl}/product/restaurant/${environment.shopId}`);
   }
 
   getById(id) {
-    return this.http.get(`${environment.DbUrl}/products/${id}.json`)
-      .pipe(map((res: Product) => {
-        return {
-          ...res,
-          id,
-          date: new Date(res.date)
-        };
-      }));
+    return this.http.get(`${environment.baseUrl}/product/${id}`);
   }
 
   deleteItem(id) {
-    return this.http.delete(`${environment.DbUrl}/products/${id}.json`);
+    return this.http.delete(`${environment.baseUrl}/product/${id}`);
   }
 
   updateItem(product: Product) {
-    return this.http.patch(`${environment.DbUrl}/products/${product.id}.json`, product)
-      .pipe(map((res: Product) => {
-        return {
-          ...res,
-          id: product.id,
-          date: new Date(res.date)
-        };
-      }));
+    return this.http.patch(`${environment.baseUrl}/product/${product._id}`, product);
   }
 
   setType(cat) {
