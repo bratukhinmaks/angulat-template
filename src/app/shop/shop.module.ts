@@ -6,6 +6,7 @@ import { ShopListComponent } from './shop-list/shop-list.component';
 import { ShopItemComponent } from './shop-item/shop-item.component';
 import {SharedModule} from '../shared/shared.module';
 import { FoodComponent } from './food/food.component';
+import {QuillModule} from 'ngx-quill';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { FoodComponent } from './food/food.component';
   imports: [
     CommonModule,
     ShopRoutingModule,
-    SharedModule
+    SharedModule,
+    QuillModule.forRoot()
   ]
 })
 export class ShopModule { }

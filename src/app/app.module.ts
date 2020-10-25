@@ -6,10 +6,12 @@ import { AppComponent } from './app.component';
 import {MainModule} from './main/main.module';
 import {SharedModule} from './shared/shared.module';
 import {QuillModule} from 'ngx-quill';
+import {MainLayoutComponent} from './main-layout/main-layout.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    MainLayoutComponent
   ],
   imports: [
     BrowserModule,

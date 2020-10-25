@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ProductService} from '../../shared/services/product.service';
+import {AlertService} from '../../shared/services/alert.service';
 
 @Component({
   selector: 'app-add-page',
   templateUrl: './add-page.component.html',
-  styleUrls: ['./add-page.component.css']
+  styleUrls: ['./add-page.component.sass']
 })
 export class AddPageComponent implements OnInit {
   form: FormGroup;
   productAdded = false ;
 
-  constructor(private productSer: ProductService) {
+  constructor(private productSer: ProductService, private alertService: AlertService) {
   }
 
   ngOnInit() {
@@ -45,6 +46,7 @@ export class AddPageComponent implements OnInit {
           this.productAdded = true ;
         }
       );
+      this.alertService.success('Dodany nowy product')
     }
   }
 }

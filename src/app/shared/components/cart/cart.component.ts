@@ -3,6 +3,7 @@ import {ProductService} from '../../services/product.service';
 import {OrderService} from '../../services/order.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Product} from '../../models';
+import {AlertService} from '../../services/alert.service';
 
 @Component({
   selector: 'app-cart',
@@ -11,7 +12,7 @@ import {Product} from '../../models';
 })
 export class CartComponent implements OnInit {
 
-  constructor(public prodServ: ProductService, private orderServ: OrderService) {
+  constructor(public prodServ: ProductService, private orderServ: OrderService, private alertService: AlertService) {
   }
 
   cartProducts: Product[] = [];
@@ -34,6 +35,7 @@ export class CartComponent implements OnInit {
   removeFromCart(i) {
     this.cartProducts.splice(i, 1);
     this.price -= +this.cartProducts[i].cost;
+    this.alertService.danger("Usunięto z koszyka")
   }
 
   submit() {
@@ -52,6 +54,7 @@ export class CartComponent implements OnInit {
       this.orderServ.createOrder(order).subscribe(
         res => {
           this.form.reset();
+          this.alertService.success("Zamowienie przekazane do realizacji")
         }
       );
     }

@@ -1,18 +1,20 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ProductService} from '../../shared/services/product.service';
 import {Subscription} from 'rxjs';
+import {AuthService} from '../../shared/services/auth.service';
+import {AlertService} from '../../shared/services/alert.service';
 
 @Component({
   selector: 'app-dashboard-page',
-  templateUrl: './dashboard-page.component.html',
-  styleUrls: ['./dashboard-page.component.css']
+  templateUrl: './dashboard.component.html',
+  styleUrls: ['./dashboard.component.sass']
 })
 export class DashboardPageComponent implements OnInit, OnDestroy {
   products = [];
   pSub: Subscription;
   rSub: Subscription;
   productName: string;
-  constructor(private prodSer: ProductService) { }
+  constructor(private prodSer: ProductService, private alertService: AlertService ) { }
 
   ngOnInit() {
     this.pSub = this.prodSer.getAll().subscribe(
@@ -36,6 +38,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
         this.products = this.products.filter(product => product.id != id);
       }
     )
+    this.alertService.danger('Product zostal usunięty');
   }
 
 

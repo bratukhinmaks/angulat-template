@@ -5,30 +5,36 @@ import {HttpClientModule} from '@angular/common/http';
 import {QuillModule} from 'ngx-quill';
 import { SearchPipe } from './pipes/search.pipe';
 import {CartComponent} from './components/cart/cart.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 const components = [
   SearchPipe,
   CartComponent,
 ];
-const moduls = [
-  ReactiveFormsModule,
-  FormsModule,
-  HttpClientModule,
-  QuillModule.forRoot()
-];
+
 
 
 @NgModule({
   declarations: [
-    ...components,
+    SearchPipe,
+    CartComponent,
+    AlertComponent,
   ],
   imports: [
     CommonModule,
-      ...moduls
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule,
+    QuillModule.forRoot()
   ],
   exports: [
-    ...moduls,
-    ...components,
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule,
+    SearchPipe,
+    CartComponent,
+    AlertComponent
   ]
 })
 export class SharedModule {

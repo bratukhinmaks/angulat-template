@@ -12,3 +12,8 @@ export interface Product {
   weight?: number ;
   date?: Date;
 }
+
+export interface Alert {
+  text: string;
+  type: string;
+}

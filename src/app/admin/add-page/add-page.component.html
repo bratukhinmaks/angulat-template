@@ -49,6 +49,6 @@
   <div *ngIf ='productAdded'>
     <small>Product has been added</small>
   </div>
-  <button type="submit" class="btn btn-success ">Add</button>
+  <button type="submit" class="btn btn-success " [disabled]="form.invalid" >Add</button>
 
 </form>

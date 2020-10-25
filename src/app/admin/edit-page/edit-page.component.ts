@@ -4,18 +4,19 @@ import {switchMap} from 'rxjs/operators';
 import {ProductService} from '../../shared/services/product.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Product} from '../../shared/models';
+import {AlertService} from '../../shared/services/alert.service';
 
 @Component({
   selector: 'app-edit-page',
   templateUrl: './edit-page.component.html',
-  styleUrls: ['./edit-page.component.css']
+  styleUrls: ['./edit-page.component.sass']
 })
 export class EditPageComponent implements OnInit {
   form: FormGroup;
   product: Product;
   productChanged = false;
 
-  constructor(private route: ActivatedRoute, private productSer: ProductService, private router: Router) {
+  constructor(private route: ActivatedRoute, private productSer: ProductService, private router: Router, private alertServ: AlertService) {
   }
 
   ngOnInit() {
@@ -60,6 +61,7 @@ export class EditPageComponent implements OnInit {
           this.router.navigate(['/admin', 'dashboard']);
         }
       );
+      this.alertServ.success("Produkt został zmieniony")
     }
   }
 
