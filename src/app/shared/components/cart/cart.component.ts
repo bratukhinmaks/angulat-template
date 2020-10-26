@@ -55,7 +55,9 @@ export class CartComponent implements OnInit {
       this.orderServ.createOrder(order).subscribe(
         res => {
           this.form.reset();
-          this.alertService.success("Zamowienie przekazane do realizacji")
+          this.alertService.success("Zamowienie przekazane do realizacji");
+          this.prodServ.cartProducts = [];
+          this.cartProducts = [];
         }
       );
     }

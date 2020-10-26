@@ -1,7 +1,16 @@
-<div class="form-control">
-  <input type="text" placeholder="Find a product" [(ngModel)]="productName">
+<div class="form-group mt-5">
+  <input class="form-control" type="text" placeholder="Znajdż product" [(ngModel)]="productName">
 </div>
-<div class="dashboard" *ngFor="let product of products1 | search:productName">
-  <app-food  [product]="product" class="box"></app-food>
+<ul class="nav nav-pills nav-fill">
+  <li class="nav-item" *ngFor="let category of categories; let i = index">
+    <div class="nav-link" (click)="cat = categories[i].value" [class.active]="cat === categories[i].value" >{{category.name}}</div>
+  </li>
+</ul>
+
+<div class="dashboard">
+  <div  *ngFor="let product of products1|filter:cat | search:productName " [@fadeInOut]>
+    <app-food [@fadeInOut]  [product]="product" class="box"></app-food>
+  </div>
 </div>
+
 

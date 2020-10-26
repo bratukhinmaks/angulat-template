@@ -8,6 +8,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./admin-lauout.component.sass']
 })
 export class AdminLauoutComponent implements OnInit {
+  isExpanded = true;
 
   constructor(private auth: AuthService, private route: Router) { }
 
@@ -17,6 +18,7 @@ export class AdminLauoutComponent implements OnInit {
     ev.preventDefault();
     this.auth.logout();
     this.route.navigate(['/admin', 'login']);
+    this.isExpanded = true;
   }
   isAuth() {
     return this.auth.isAuth();

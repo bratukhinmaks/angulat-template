@@ -1,27 +1,35 @@
-<nav class="navbar bg-primary">
-  <h2>
-    <a routerLink="/">Recrut task</a>
-  </h2>
-  <ul *ngIf="isAuth(); else login">
-    <li routerLinkActive="active">
-      <a routerLink="/admin/dashboard">Dashboard</a>
-    </li>
-    <li routerLinkActive="active">
-      <a routerLink="/admin/add-page">Add new</a>
-    </li>
-    <li routerLinkActive="active" >
-      <a routerLink="/admin/order">Order</a>
-    </li>
-    <li routerLinkActive="active" >
-      <a (click)="logout($event)">LogOut</a>
-    </li>
-  </ul>
-  <ng-template #login>
-    <ul>
-      <li routerLinkActive="active">
-        <a routerLink="/admin/login">Login</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+  <a class="navbar-brand" href="#">Demo</a>
+  <button class="navbar-toggler" type="button" (click)="isExpanded = !isExpanded">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div [class.collapse]='isExpanded' class="navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav justify-content-end" *ngIf="isAuth(); else login">
+      <li class="nav-item" routerLinkActive="active">
+        <a  class="nav-link" routerLink="/admin/dashboard">Strona Productów</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/admin/add-page">Dodaj nowy</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active" >
+        <a class="nav-link" routerLink="/admin/order">Zamówenia</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active" >
+        <a class="nav-link red" (click)="logout($event)">Wyloguj się</a>
       </li>
     </ul>
-  </ng-template>
+    <ng-template #login>
+      <ul class="navbar-nav justify-content-end">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/admin/login">Login</a>
+        </li>
+      </ul>
+    </ng-template>
+  </div>
 </nav>
-<router-outlet></router-outlet>
+
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
+

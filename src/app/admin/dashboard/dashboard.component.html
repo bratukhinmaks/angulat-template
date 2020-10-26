@@ -1,19 +1,19 @@
 <div *ngIf="products.length; else loading">
-  <h2 class="text-center">Dashboard of products</h2>
+  <h2 class="text-center mt-6">Strona Productów</h2>
 
-  <div class="form-control">
-    <input type="text" placeholder="Find a product..." [(ngModel)]="productName">
+  <div class="form-group">
+    <input class="form-control" type="text" placeholder="Find a product..." [(ngModel)]="productName">
   </div>
 
-  <table>
+  <table class="table table-hover">
     <thead>
     <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Date of creation</th>
-      <th>Open</th>
-      <th>Delete</th>
+      <th scope="col">ID</th>
+      <th scope="col">Nazwa</th>
+      <th scope="col">Cena</th>
+      <th scope="col">Data stworzenia</th>
+      <th scope="col">Zmień</th>
+      <th scope="col">Usuń</th>
     </tr>
     </thead>
 
@@ -21,13 +21,13 @@
     <tr *ngFor="let product of products | search : productName ; let idx = index">
       <td>{{ idx + 1 }}</td>
       <td>{{ product.title }}</td>
-      <td>{{ product.price }}</td>
+      <td>{{ product.cost }}</td>
       <td>{{ product.date | date : 'short'}}</td>
       <td>
-        <button class="btn btn-dark" [routerLink]="['/admin','product',product._id,'edit-page']">Open</button>
+        <button class="btn btn-dark" [routerLink]="['/admin','product',product._id,'edit-page']">Zmień</button>
       </td>
       <td>
-        <button class="btn btn-danger" (click)="delete(product._id)">Delete</button>
+        <button class="btn btn-danger" (click)="delete(product._id)">Usuń</button>
       </td>
     </tr>
     </tbody>

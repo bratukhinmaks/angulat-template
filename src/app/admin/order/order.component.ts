@@ -16,7 +16,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.oSub = this.orderSer.getAll().subscribe(orders => {
+    this.oSub = this.orderSer.getAll().subscribe((orders: any) => {
       this.orders = orders;
     });
   }

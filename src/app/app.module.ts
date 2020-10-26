@@ -5,10 +5,10 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {MainModule} from './main/main.module';
 import {SharedModule} from './shared/shared.module';
-import {QuillModule} from 'ngx-quill';
 import {MainLayoutComponent} from './main-layout/main-layout.component';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthInterceptore} from './shared/interceptors/auth.interceptor';
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,8 @@ import {AuthInterceptore} from './shared/interceptors/auth.interceptor';
     AppRoutingModule,
     MainModule,
     SharedModule,
-    QuillModule.forRoot(),
+    BrowserAnimationsModule,
+    NoopAnimationsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

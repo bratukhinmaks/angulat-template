@@ -1,9 +1,15 @@
-<div class="text-center">
-  <h3>{{product.title}}</h3>
-  <div class="flex-center">
-    <quill-view-html [content]="product.imgUrl"></quill-view-html>
+<div class="card" style="width: 18rem;">
+  <img [src]="product.img" class="card-img-top" [alt]="product.title">
+  <div class="card-body">
+    <h5 class="card-title">{{product.title}}</h5>
+    <p class="card-text">Cena: {{product.cost}} zł</p>
   </div>
-  <h3>Price: {{product.cost}} zł</h3>
-  <button [routerLink]="['/shop',product._id]" class="btn btn-dark">Read more</button>
-  <button  class="btn btn-dark" (click)="addProduct(product)">Add to cart</button>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Waga: {{product.weight}} gr</li>
+    <li class="list-group-item">{{product.category}}</li>
+  </ul>
+  <div class="card-buttons">
+    <button [routerLink]="['/shop',product._id]" class="btn btn-dark">Dowiedż się więcej</button>
+    <button  class="btn btn-success" (click)="addProduct(product)">Dodaj do koszyka</button>
+  </div>
 </div>

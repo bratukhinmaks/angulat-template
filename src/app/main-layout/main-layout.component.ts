@@ -7,6 +7,7 @@ import {ProductService} from '../shared/services/product.service';
   styleUrls: ['./main-layout.component.sass']
 })
 export class MainLayoutComponent implements OnInit {
+  isExpanded = true;
 
   constructor(public prodServ: ProductService) { }
 

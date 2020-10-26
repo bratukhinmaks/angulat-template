@@ -1,47 +1,45 @@
 <div class="container" *ngIf="cartProducts.length > 0;else empty">
-
-
-
-  <table>
+  <h3 class="text-center mt-5 mb-5">Twoje aktualne zamówienie</h3>
+  <table class="table table-hover">
     <tbody>
     <tr *ngFor="let prod of cartProducts; let i = index">
-      <td>{{prod.title}}</td>
-      <td>{{prod.weight}}</td>
-      <td>{{prod.cost}} zl</td>
-      <td>{{prod.category}}</td>
-      <td><button class="btn btn-dark" (click)="removeFromCart(i)">Delete</button></td>
+      <td scope="col">{{prod.title}}</td>
+      <td scope="col">{{prod.weight}}</td>
+      <td scope="col">{{prod.cost}} zl</td>
+      <td scope="col">{{prod.category}}</td>
+      <td scope="col"><button class="btn btn-dark" (click)="removeFromCart(i)">Usuń z koszyka</button></td>
     </tr>
-    Total:{{price}}
+    Cena końcowa:{{price}}
     </tbody>
   </table>
 
 
-  <h2 class="text-center">Delivery:</h2>
+  <h2 class="text-center">Złoż zamówenie:</h2>
   <form [formGroup]="form" (ngSubmit)="submit()">
-    <div class="form-control">
-      <label for="name">Name</label>
-      <input id="name" formControlName="name">
+    <div class="form-group">
+      <label for="name">Imie</label>
+      <input class="form-control" id="name" formControlName="name">
       <div *ngIf="form.get('name').touched && form.get('name').invalid" class="validation">
-        <small *ngIf="form.get('name').errors.required">Enter name</small>
+        <small *ngIf="form.get('name').errors.required">Wprowadz imie</small>
       </div>
     </div>
-    <div class="form-control">
-      <label for="phone">Phone</label>
-      <input id="phone"  formControlName="phone">
+    <div class="form-group">
+      <label for="phone">Telefon</label>
+      <input class="form-control" id="phone"  formControlName="phone">
       <div *ngIf="form.get('phone').touched && form.get('phone').invalid" class="validation">
         <small *ngIf="form.get('phone').errors.required">Enter phone</small>
       </div>
     </div>
-    <div class="form-control">
-      <label for="adress">Adress</label>
+    <div class="form-group">
+      <label for="adress">Adres</label>
       <input id="adress" class="form-control" formControlName="adress">
       <div *ngIf="form.get('adress').touched && form.get('adress').invalid" class="validation">
         <small *ngIf="form.get('adress').errors.required">Enter your adress</small>
       </div>
     </div>
-    <div class="form-control">
-      <label for="payment">Payment</label>
-      <select name="payment" id="payment" formControlName="payment">
+    <div class="form-group">
+      <label for="payment">Sposób oplaty</label>
+      <select class="form-control" name="payment" id="payment" formControlName="payment">
         <option value="card">Card</option>
         <option value="cash">Cash</option>
       </select>
@@ -49,12 +47,12 @@
     <div *ngIf ='productAdded'>
       <small>Oreder has been published</small>
     </div>
-    <button type="submit" class="btn btn-success ">Place order</button>
+    <button type="submit" class="btn btn-success ">Zamów</button>
   </form>
 </div>
 
 <ng-template #empty>
   <div class="container">
-    <h2 class="text-center"> You cart is empty </h2>
+    <h2 class="text-center">Twoj koszyk jest pusty</h2>
   </div>
 </ng-template>

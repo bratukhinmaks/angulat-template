@@ -1,16 +1,21 @@
-<nav class="navbar bg-success">
-  <h2 routerLink="/">Nazwa Knajpy</h2>
-  <ul>
-    <li routerLinkActive="active">
-      <a routerLink="/main">Strona Główna</a>
-    </li>
-    <li routerLinkActive="active">
-      <a routerLink="/shop">Sklep</a>
-    </li>
-    <li routerLinkActive="active">
-      <a routerLink="/cart">Koszyk:{{prodServ.cartProducts.length}}</a>
-    </li>
-  </ul>
+<nav class=" nav navbar navbar-expand-lg navbar-light bg-light justify-content-around">
+  <a class="navbar-brand" href="#">Demo</a>
+  <button class="navbar-toggler" type="button" (click)="isExpanded = !isExpanded">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div [class.collapse]='isExpanded' class="navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav justify-content-end">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/main">Strona Główna</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/shop">Sklep</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/cart">Koszyk:{{prodServ.cartProducts.length}}</a>
+      </li>
+    </ul>
+  </div>
 </nav>
 <div class="container">
   <router-outlet></router-outlet>

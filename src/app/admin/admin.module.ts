@@ -9,7 +9,6 @@ import { EditPageComponent } from './edit-page/edit-page.component';
 import { LoginComponent } from './login/login.component';
 import { AdminLauoutComponent } from './shared/admin-lauout.component';
 import {SharedModule} from '../shared/shared.module';
-import {QuillModule} from 'ngx-quill';
 
 
 
@@ -19,7 +18,6 @@ import {QuillModule} from 'ngx-quill';
     CommonModule,
     AdminRoutingModule,
     SharedModule,
-    QuillModule.forRoot()
   ]
 })
 export class AdminModule { }
