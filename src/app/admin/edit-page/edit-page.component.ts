@@ -15,8 +15,6 @@ export class EditPageComponent implements OnInit {
   form: FormGroup;
   product: Product;
   productChanged = false;
-  editDescription = false;
-  editImg = false;
 
   constructor(private route: ActivatedRoute, private productSer: ProductService, private router: Router, private alertServ: AlertService) {
   }
@@ -34,8 +32,8 @@ export class EditPageComponent implements OnInit {
       this.form = new FormGroup({
         title: new FormControl(this.product.title, Validators.required),
         cost: new FormControl(this.product.cost, Validators.required),
-        description: new FormControl('', Validators.required),
-        imgUrl: new FormControl('', Validators.required),
+        description: new FormControl(this.product.description, Validators.required),
+        imgUrl: new FormControl(this.product.imgUrl, Validators.required),
         category: new FormControl(this.product.category, Validators.required),
         weight: new FormControl(this.product.weight, Validators.required),
       });

@@ -51,6 +51,7 @@ export class CartComponent implements OnInit {
         payment: this.form.value.payment,
         products: this.cartProducts,
         date: new Date(),
+        status: 'CONFIRMED'
       };
       this.orderServ.createOrder(order).subscribe(
         res => {

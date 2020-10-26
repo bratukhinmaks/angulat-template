@@ -24,7 +24,7 @@
       <td>{{ product.cost }}</td>
       <td>{{ product.date | date : 'short'}}</td>
       <td>
-        <button class="btn btn-dark" [routerLink]="['/admin','product',product._id,'edit-page']">Zmień</button>
+        <button class="btn btn-primary" [routerLink]="['/admin','product',product._id,'edit-page']">Zmień</button>
       </td>
       <td>
         <button class="btn btn-danger" (click)="delete(product._id)">Usuń</button>

@@ -1,19 +1,15 @@
 <div class="container" *ngIf="cartProducts.length > 0;else empty">
   <h3 class="text-center mt-5 mb-5">Twoje aktualne zamówienie</h3>
-  <table class="table table-hover">
-    <tbody>
-    <tr *ngFor="let prod of cartProducts; let i = index">
-      <td scope="col">{{prod.title}}</td>
-      <td scope="col">{{prod.weight}}</td>
-      <td scope="col">{{prod.cost}} zl</td>
-      <td scope="col">{{prod.category}}</td>
-      <td scope="col"><button class="btn btn-dark" (click)="removeFromCart(i)">Usuń z koszyka</button></td>
-    </tr>
-    Cena końcowa:{{price}}
-    </tbody>
-  </table>
-
-
+  <div class="cart">
+    <div class="cart-item" *ngFor="let prod of cartProducts; let i = index">
+      <div class="cart-title">{{prod.title}}</div>
+      <div class="cart-weight">{{prod.weight}}</div>
+      <div class="cart-cost">{{prod.cost}}</div>
+      <div class="cart-category">{{prod.category}}</div>
+      <button class="btn btn-dark" (click)="removeFromCart(i)">Usuń z koszyka</button>
+    </div>
+  </div>
+  <div class="cart-final" >Cena końcowa:{{price}} zł</div>
   <h2 class="text-center">Złoż zamówenie:</h2>
   <form [formGroup]="form" (ngSubmit)="submit()">
     <div class="form-group">

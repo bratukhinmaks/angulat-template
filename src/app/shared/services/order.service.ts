@@ -16,7 +16,12 @@ export class OrderService {
   createOrder(order) {
     return this.http.post(`${environment.baseUrl}/order/${environment.shopId}`, order);
   }
+
   getAll() {
-    return this.http.get(`${environment.baseUrl}/order/restaurant/${environment.shopId}`)
+    return this.http.get(`${environment.baseUrl}/order/restaurant/${environment.shopId}`);
+  }
+
+  changeStatus(id, status) {
+    return this.http.patch(`${environment.baseUrl}/order/${id}`, status);
   }
 }

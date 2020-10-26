@@ -1,5 +1,5 @@
-<div *ngIf="orders.length; else empty">
-  <h3 class="text-center">Zamówienia:</h3>
+<div class="mt-5 " *ngIf="orders.length; else empty">
+  <h3 class="text-center mb-5">Zamówienia</h3>
   <table class="table table-hover">
     <thead>
     <tr>
@@ -28,11 +28,16 @@
 
       <td>{{ order.price}} zł</td>
       <td>
-        <button class="btn btn-success" >Realizowane</button>
+        <div [ngSwitch]="order.status" >
+          <button class="btn btn-primary" *ngSwitchCase="'CONFIRMED'" (click)="setStatus(order._id, 'IN_PROGRESS')">Przyjęty</button>
+          <button class="btn btn-success" *ngSwitchCase="'IN_PROGRESS'" (click)="setStatus(order._id,'COMPLETED')" >W procesie</button>
+          <button class="btn btn-secondary" *ngSwitchCase="'COMPLETED'" [disabled]="order.status === 'COMPLETED'">Zrobiony</button>
+        </div>
       </td>
     </tr>
     </tbody>
   </table>
+  <div>Ceny koncowa price : {{price}}</div>
 </div>
 
 <ng-template #empty>
