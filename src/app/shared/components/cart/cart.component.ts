@@ -23,8 +23,9 @@ export class CartComponent implements OnInit {
     this.form = new FormGroup({
       name: new FormControl(null, Validators.required),
       phone: new FormControl(null, Validators.required),
-      adress: new FormControl(null, Validators.required),
-      payment: new FormControl('cash'),
+      address: new FormControl(null, Validators.required),
+      payment: new FormControl('cash', Validators.required),
+      delivery: new FormControl('cash', Validators.required),
     });
     this.cartProducts = this.prodServ.cartProducts;
     for (let i = 0; i < this.cartProducts.length; i++) {
@@ -47,9 +48,10 @@ export class CartComponent implements OnInit {
         order: this.cartProducts,
         phone: this.form.value.phone,
         price: this.price,
-        adress: this.form.value.adress,
+        address: this.form.value.adress,
         payment: this.form.value.payment,
         products: this.cartProducts,
+        delivery: this.form.value.delivery,
         date: new Date(),
         status: 'CONFIRMED'
       };

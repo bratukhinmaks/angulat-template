@@ -38,3 +38,12 @@ module.exports.updateOrderStatus = async function (req, res) {
         errorHandler(res, error);
     }
 }
+
+module.exports.deleteOrder = async function (req, res) {
+  try {
+    const response = await OrderService.deleteOrder(req.params.restaurantId, req.params.orderId);
+    res.status(202).json(response);
+  } catch (error) {
+    errorHandler(res, error);
+  }
+}

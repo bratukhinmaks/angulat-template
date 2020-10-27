@@ -10,6 +10,8 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthInterceptore} from './shared/interceptors/auth.interceptor';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,13 +23,14 @@ import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-b
     MainModule,
     SharedModule,
     BrowserAnimationsModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptore,
     multi: true,
-  }],
+  }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule {

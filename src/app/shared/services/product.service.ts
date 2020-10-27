@@ -28,7 +28,7 @@ export class ProductService {
   }
 
   deleteItem(id) {
-    return this.http.delete(`${environment.baseUrl}/product/${id}`);
+    return this.http.delete(`${environment.baseUrl}/product/${environment.shopId}/${id}`);
   }
 
   updateItem(product: Product) {

@@ -1,5 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css'
+$stickyHeight: 120px
+$stickyHeightInlineDay: 340px
+$stickyHeightInlineMonth: 280px
+$stickyHeightInlineTime: 180px
+$stickyHeightInlineDayTime: 420px
+$menuWidth: 200px
+
+.custom-container
+  width: 90%
+  margin: 0 auto
 
 small
   color: red
@@ -10,8 +20,11 @@ label
   color: #858383
 
 form
-  width: 75%
+  width: 60%
   margin: 6rem auto
+
+.nav-item
+  cursor: pointer
 
 .alert-wrapper
   position: fixed
@@ -26,15 +39,16 @@ form
 .red
   color: red !important
   cursor: pointer
+
 .green
   color: green !important
   cursor: pointer
 
 .dashboard
-   display: flex
-   flex-wrap: wrap
-   align-items: center
-   justify-content: space-around
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  justify-content: space-around
 
 .navbar-expand-lg .navbar-collapse
   justify-content: flex-end !important
@@ -43,10 +57,12 @@ form
   background-color: lightgreen
   margin: 0 !important
   z-index: 99
+
 .warning
   background-color: lightyellow
   margin: 0 !important
   z-index: 99
+
 .danger
   background-color: lightpink
   margin: 0 !important
@@ -55,6 +71,7 @@ form
 .card-buttons
   display: flex
   justify-content: space-around
+
   button
     width: 40%
     margin: 2rem 0
@@ -63,6 +80,7 @@ form
   border: 1px solid #e0e0e0
   border-radius: 5px
   padding: 15px 10px
+
   &-item
     border-bottom: 1px solid black
     display: flex
@@ -72,15 +90,20 @@ form
     @media screen and (max-width: 768px)
       flex-direction: column
       margin: 15px 0
+
   &-title
     color: green
     font-size: 1.2rem
+
   &-weight
     color: lightgray
+
   &-cost
     color: lightgray
+
   &-category
     color: lightgray
+
   &-final
     font-weight: 500
     font-size: 1.5rem

@@ -6,6 +6,7 @@ import {SearchPipe} from './pipes/search.pipe';
 import {CartComponent} from './components/cart/cart.component';
 import {AlertComponent} from './components/alert/alert.component';
 import {FilterPipe} from './pipes/filter.pipe';
+import { DateFilterPipe } from './pipes/date-filter.pipe';
 
 const components = [
   CartComponent,
@@ -25,14 +26,16 @@ const moduls = [
 
 @NgModule({
   declarations: [
-    ...components
+    ...components,
+    DateFilterPipe
   ],
   imports: [
     ...moduls
   ],
   exports: [
     ...components,
-    ...moduls
+    ...moduls,
+    DateFilterPipe
   ]
 })
 export class SharedModule {

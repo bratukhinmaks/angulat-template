@@ -43,6 +43,18 @@ module.exports.updateOrderStatus = async function (orderId, status) {
     }
 }
 
+module.exports.deleteOrder = async function(restaurantId, orderId) {
+  let order
+  try {
+     order = await Order.findOne({"_id": ObjectId(`${orderId}`)})
+    await Restaurant.findOneAndUpdate(
+      {"_id": ObjectId(`${restaurantId}`)},
+      {$pull: {"orders": order}}
+    );
+  } catch (error) {
+    throw Error('Error while remove Product from Restaurant.')
+  }
+}
 
 module.exports.getOrders = async function (restaurantId) {
     let found;

@@ -27,10 +27,10 @@
       </div>
     </div>
     <div class="form-group">
-      <label for="adress">Adres</label>
-      <input id="adress" class="form-control" formControlName="adress">
-      <div *ngIf="form.get('adress').touched && form.get('adress').invalid" class="validation">
-        <small *ngIf="form.get('adress').errors.required">Enter your adress</small>
+      <label for="address">Adres</label>
+      <input id="address" class="form-control" formControlName="address">
+      <div *ngIf="form.get('address').touched && form.get('address').invalid" class="validation">
+        <small *ngIf="form.get('address').errors.required">Enter your address</small>
       </div>
     </div>
     <div class="form-group">
@@ -38,6 +38,13 @@
       <select class="form-control" name="payment" id="payment" formControlName="payment">
         <option value="card">Card</option>
         <option value="cash">Cash</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="delivery">Sposób dostawy</label>
+      <select class="form-control" name="delivery" id="delivery" formControlName="delivery">
+        <option value="odbiór">Odbiór</option>
+        <option value="dostawa">Dostawa</option>
       </select>
     </div>
     <div *ngIf ='productAdded'>

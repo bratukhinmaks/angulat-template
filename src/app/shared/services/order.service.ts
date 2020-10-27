@@ -22,6 +22,9 @@ export class OrderService {
   }
 
   changeStatus(id, status) {
-    return this.http.patch(`${environment.baseUrl}/order/${id}`, status);
+    return this.http.patch(`${environment.baseUrl}/order/${id}`, {'status': status});
+  }
+  deleteOrder(id) {
+    return this.http.delete(`${environment.baseUrl}/order/${environment.shopId}/${id}`);
   }
 }

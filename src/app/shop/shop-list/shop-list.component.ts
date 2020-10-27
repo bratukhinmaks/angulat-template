@@ -28,6 +28,7 @@ export class ShopListComponent implements OnInit, OnDestroy {
     {name: 'Sałatki', value: 'salads'},
   ];
   cat: string;
+  category = 'category';
 
   constructor(private prodSer: ProductService) {
   }
