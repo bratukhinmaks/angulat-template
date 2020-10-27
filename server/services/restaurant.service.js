@@ -1,6 +1,6 @@
 const Restaurant = require('../models/Restaurant')
 const ObjectId = require("mongodb").ObjectId;
-const UserService = require('./user.service')
+const UserService = require('../services/user.service')
 const SomethingNotFoundError = require('../utils/errors/SomethingNotFoundError')
 
 module.exports.createRestaurant = async function (body) {

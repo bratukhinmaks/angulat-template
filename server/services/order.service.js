@@ -1,6 +1,6 @@
 const ObjectId = require("mongodb").ObjectId;
 
-const RestaurantService = require('./restaurant.service')
+const RestaurantService = require('../services/restaurant.service')
 
 const Order = require('../models/Order')
 const Product = require('../models/Product')
@@ -32,18 +32,9 @@ module.exports.updateOrderStatus = async function (orderId, status) {
     }
 
     if (found) {
-        switch (status) {
-            case OrderStatus.COMPLETED:
-                found.status = OrderStatus.COMPLETED;
-            case OrderStatus.CONFIRMED:
-                found.status = OrderStatus.CONFIRMED;
-            case OrderStatus.DECLINED:
-                found.status = OrderStatus.DECLINED;
-            case OrderStatus.IN_PROGRESS:
-                found.status = OrderStatus.IN_PROGRESS;
-        }
+        found = await changeStatusForOrder(found, status);
         try {
-            return await Order.findOneAndUpdate(found);
+            return await Order.findOneAndUpdate({_id: orderId}, {$set: found});
         } catch (error) {
             throw Error('Error while update a new Order.')
         }
@@ -83,4 +74,22 @@ module.exports.getOrderProducts = async function (orderId) {
     } else {
         throw new SomethingNotFoundError(`Order products not found in DB.`, 409);
     }
+}
+
+async function changeStatusForOrder(order, status) {
+    switch (status) {
+        case OrderStatus.COMPLETED:
+            order.status = OrderStatus.COMPLETED;
+            break;
+        case OrderStatus.CONFIRMED:
+            order.status = OrderStatus.CONFIRMED;
+            break;
+        case OrderStatus.DECLINED:
+            order.status = OrderStatus.DECLINED;
+            break;
+        case OrderStatus.IN_PROGRESS:
+            order.status = OrderStatus.IN_PROGRESS;
+            break;
+    }
+    return order;
 }

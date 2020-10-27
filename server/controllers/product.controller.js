@@ -40,8 +40,17 @@ module.exports.updateProductById = async function (req, res) {
 
 module.exports.deleteProductById = async function (req, res) {
     try {
-        const response = await ProductService.deleteProductById(req.params.productId);
-        res.status(200).json(response);
+        const response = await ProductService.deleteProductById(req.params.restaurantId, req.params.productId);
+        res.status(202).json(response);
+    } catch (error) {
+        errorHandler(res, error);
+    }
+}
+
+module.exports.archiveProductById = async function (req, res) {
+    try {
+        const response = await ProductService.archiveProduct(req.params.productId);
+        res.status(202).json(response);
     } catch (error) {
         errorHandler(res, error);
     }

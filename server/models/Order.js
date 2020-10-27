@@ -23,6 +23,9 @@ const orderSchema = new Schema({
     status: {
         type: String
     },
+    delivery: {
+        type: String
+    },
     products: [{
         ref: 'products',
         type: Schema.Types.ObjectID
