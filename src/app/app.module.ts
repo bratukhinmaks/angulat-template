@@ -9,7 +9,11 @@ import {MainLayoutComponent} from './main-layout/main-layout.component';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthInterceptore} from './shared/interceptors/auth.interceptor';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
-
+import {BannerComponent} from './main/components/banner/banner.component';
+import {MenuComponent} from './main/components/menu/menu.component';
+import {AboutComponent} from './main/components/about/about.component';
+import {FingusComponent} from './main/components/fingus/fingus.component';
+import {PhotosComponent} from './main/components/photos/photos.component';
 
 
 @NgModule({
@@ -30,7 +34,8 @@ import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-b
     useClass: AuthInterceptore,
     multi: true,
   }
-],
+  ],
+  entryComponents: [BannerComponent, MenuComponent, AboutComponent, FingusComponent, PhotosComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

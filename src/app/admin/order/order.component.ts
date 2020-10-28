@@ -65,6 +65,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     const filteredOrders = this.orders.filter(order => order.status === this.stat);
     const filterByAll = filteredOrders.filter(order => {
       const OrderDay = new Date(order.date).getDay();
+      // @ts-ignore
       const SelectedDay = new Date(this.selectedDate._d).getDay();
       return OrderDay === SelectedDay;
     });
@@ -78,6 +79,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.selectedDate = selectedDate;
     const filteredByDate = this.orders.filter(order => {
       const OrderDay = new Date(order.date).getDay();
+      // @ts-ignore
       const SelectedDay = new Date(this.selectedDate._d).getDay();
       return OrderDay === SelectedDay;
     });
@@ -85,15 +87,5 @@ export class OrderComponent implements OnInit, OnDestroy {
     for (let i = 0; i < filteredByAll.length; i++) {
       this.price += filteredByAll[i].price;
     }
-  }
-
-  deleteOrder(id: string) {
-    this.orderSer.deleteOrder(id).subscribe(() => {
-      this.order = this.orders.filter(order => order._id !== id);
-    });
-  }
-
-  getTotalPrice() {
-
   }
 }

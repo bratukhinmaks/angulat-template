@@ -1,0 +1,8 @@
+<div class="banner">
+  <div class="slider-item" *ngFor="let img of imgs;let i = index">
+    <ng-container *ngIf="i === currentSlide">
+    <img [src]="img">
+    </ng-container>
+  </div>
+  {{currentSlide}}
+</div>

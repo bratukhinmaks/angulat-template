@@ -1,5 +1,6 @@
+
 <div class="container" *ngIf="product$ | async as product; else loading">
-  <div class="product">
+  <div class="product" *ngIf="product.isDeleted">
     <div class="header right">
       <button routerLink="/shop" class="btn btn-dark">Back</button>
     </div>

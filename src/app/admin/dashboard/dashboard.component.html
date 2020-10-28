@@ -14,6 +14,7 @@
       <th scope="col">Data stworzenia</th>
       <th scope="col">Zmień</th>
       <th scope="col">Usuń</th>
+      <th scope="col">Dostępność</th>
     </tr>
     </thead>
 
@@ -28,6 +29,9 @@
       </td>
       <td>
         <button class="btn btn-danger" (click)="delete(product._id)">Usuń</button>
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="archive(product)" >{{product.isDeleted ? "Dostepny" : "Nie dostępny"}}</button>
       </td>
     </tr>
     </tbody>

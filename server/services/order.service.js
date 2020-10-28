@@ -1,6 +1,6 @@
 const ObjectId = require("mongodb").ObjectId;
 
-const RestaurantService = require('../services/restaurant.service')
+const RestaurantService = require('./restaurant.service')
 
 const Order = require('../models/Order')
 const Product = require('../models/Product')
@@ -8,6 +8,39 @@ const Restaurant = require('../models/Restaurant')
 const OrderStatus = require('../models/enums/OrderStatus')
 
 const SomethingNotFoundError = require('../utils/errors/SomethingNotFoundError')
+
+
+module.exports.getOrders = async function (restaurantId) {
+    let found;
+    try {
+        found = await RestaurantService.getRestaurantById(restaurantId)
+    } catch (error) {
+        throw Error('Error while getting Products.')
+    }
+
+    if (found) {
+        return found.orders;
+    } else {
+        throw new SomethingNotFoundError(`Orders not found in DB.`, 409);
+    }
+}
+
+module.exports.getOrderProducts = async function (orderId) {
+    let found;
+    try {
+        found = await Order.findOne({"_id": ObjectId(`${orderId}`)})
+            .populate('products')
+            .lean();
+    } catch (error) {
+        throw Error('Error while getting Products.')
+    }
+
+    if (found) {
+        return found.products;
+    } else {
+        throw new SomethingNotFoundError(`Order products not found in DB.`, 409);
+    }
+}
 
 module.exports.createOrder = async function (order, restaurantId) {
     try {
@@ -38,51 +71,6 @@ module.exports.updateOrderStatus = async function (orderId, status) {
         } catch (error) {
             throw Error('Error while update a new Order.')
         }
-    } else {
-        throw new SomethingNotFoundError(`Order products not found in DB.`, 409);
-    }
-}
-
-module.exports.deleteOrder = async function(restaurantId, orderId) {
-  let order
-  try {
-     order = await Order.findOne({"_id": ObjectId(`${orderId}`)})
-    await Restaurant.findOneAndUpdate(
-      {"_id": ObjectId(`${restaurantId}`)},
-      {$pull: {"orders": order}}
-    );
-  } catch (error) {
-    throw Error('Error while remove Product from Restaurant.')
-  }
-}
-
-module.exports.getOrders = async function (restaurantId) {
-    let found;
-    try {
-        found = await RestaurantService.getRestaurantById(restaurantId)
-    } catch (error) {
-        throw Error('Error while getting Products.')
-    }
-
-    if (found) {
-        return found.orders;
-    } else {
-        throw new SomethingNotFoundError(`Orders not found in DB.`, 409);
-    }
-}
-
-module.exports.getOrderProducts = async function (orderId) {
-    let found;
-    try {
-        found = await Order.findOne({"_id": ObjectId(`${orderId}`)})
-            .populate('products')
-            .lean();
-    } catch (error) {
-        throw Error('Error while getting Products.')
-    }
-
-    if (found) {
-        return found.products;
     } else {
         throw new SomethingNotFoundError(`Order products not found in DB.`, 409);
     }

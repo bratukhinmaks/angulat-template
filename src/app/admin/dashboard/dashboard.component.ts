@@ -15,7 +15,10 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   pSub: Subscription;
   rSub: Subscription;
   productName: string;
-  constructor(private prodSer: ProductService, private alertService: AlertService ) { }
+  isArchived: boolean;
+
+  constructor(private prodSer: ProductService, private alertService: AlertService) {
+  }
 
   ngOnInit() {
     this.pSub = this.prodSer.getAll().subscribe(
@@ -24,6 +27,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
       }
     );
   }
+
   ngOnDestroy(): void {
     if (this.pSub) {
       this.pSub.unsubscribe();
@@ -32,14 +36,26 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
       this.rSub.unsubscribe();
     }
   }
+
   delete(id) {
     this.rSub = this.prodSer.deleteItem(id).subscribe(
       () => {
         this.products = this.products.filter(product => product._id !== id);
       }
-    )
+    );
     this.alertService.danger('Product zostal usunięty');
   }
 
-
+  archive(product) {
+    this.rSub = this.prodSer.archiveItem(product).subscribe(
+      (product: Product) => {
+        this.products.map((prod: Product) => {
+          if (product._id === prod._id) {
+            prod.isDeleted = product.isDeleted;
+          }
+        });
+      }
+    );
+    this.alertService.danger('Product zostal nie dostępny');
+  }
 }

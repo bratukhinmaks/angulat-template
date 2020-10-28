@@ -1,6 +1,7 @@
 const ProductService = require('../services/product.service')
-
+const uploadMid = require('../middleware/upload')
 const errorHandler = require('../utils/errorHandler');
+
 
 module.exports.getAll = async function (req, res) {
     try {
@@ -21,8 +22,13 @@ module.exports.getProductById = async function (req, res) {
 }
 
 module.exports.createProduct = async function (req, res) {
+    let response;
     try {
-        const response = await ProductService.createProduct(req.body, req.params.restaurantId);
+        if (req.file) {
+            response = await ProductService.createProduct(req.body, req.file.location, req.params.restaurantId);
+        } else {
+            response = await ProductService.createProduct(req.body, '', req.params.restaurantId);
+        }
         res.status(201).json(response);
     } catch (error) {
         errorHandler(res, error);
@@ -30,9 +36,23 @@ module.exports.createProduct = async function (req, res) {
 }
 
 module.exports.updateProductById = async function (req, res) {
+    let response;
     try {
-        const response = await ProductService.updateProduct(req.body, req.params.productId);
+        if (req.file) {
+            response = await ProductService.updateProduct(req.body, req.file.location, req.params.productId, req.params.restaurantId);
+        } else {
+            response = await ProductService.updateProduct(req.body, '', req.params.productId, req.params.restaurantId);
+        }
         res.status(201).json(response);
+    } catch (error) {
+        errorHandler(res, error);
+    }
+}
+
+module.exports.image = async function (req, res) {
+    try {
+        res.status(200).json(`{"message": "dupa"}`);
+       await uploadMid.deleteImageFromS3(req.file.location, undefined);
     } catch (error) {
         errorHandler(res, error);
     }
@@ -49,7 +69,7 @@ module.exports.deleteProductById = async function (req, res) {
 
 module.exports.archiveProductById = async function (req, res) {
     try {
-        const response = await ProductService.archiveProduct(req.params.productId);
+        const response = await ProductService.archiveProduct(req.body);
         res.status(202).json(response);
     } catch (error) {
         errorHandler(res, error);

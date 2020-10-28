@@ -2,8 +2,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const keys = require('../config/keys');
-const UserService = require('../services/user.service')
-const RestaurantService = require('../services/restaurant.service')
+const UserService = require('./user.service')
+const RestaurantService = require('./restaurant.service')
 const UserNotFoundError = require('../utils/errors/UserNotFoundError');
 const AuthUserError = require('../utils/errors/AuthUserError');
 

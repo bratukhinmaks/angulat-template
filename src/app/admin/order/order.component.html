@@ -37,16 +37,12 @@
 
       <td>{{ order.price}} zł</td>
       <td>{{ order.delivery}}</td>
-      <td>{{ order._id}}</td>
       <td>
         <div [ngSwitch]="order.status" >
           <button class="btn btn-primary" *ngSwitchCase="'CONFIRMED'" (click)="setStatus(order._id, 'IN_PROGRESS')">Przyjęty</button>
           <button class="btn btn-success" *ngSwitchCase="'IN_PROGRESS'" (click)="setStatus(order._id,'COMPLETED')" >W procesie</button>
           <button class="btn btn-secondary" *ngSwitchCase="'COMPLETED'" [disabled]="order.status === 'COMPLETED'">Zrobiony</button>
         </div>
-      </td>
-      <td>
-        <button (click)="deleteOrder(order._id)">Usun</button>
       </td>
     </tr>
     </tbody>

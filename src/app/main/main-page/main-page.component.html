@@ -1,5 +1,7 @@
-<app-banner [imgs] = images ></app-banner>
-<app-about [text]="'Hello Angular'"></app-about>
-<app-menu></app-menu>
-<app-photos></app-photos>
-<app-fingus></app-fingus>
+<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+  <div class="example-box" cdkDrag *ngFor="let componet of components ; let i = index" >
+    <ng-container  *ngComponentOutlet="componet"></ng-container>
+  </div>
+</div>
+
+

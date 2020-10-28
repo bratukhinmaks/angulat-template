@@ -38,6 +38,7 @@ export class AddPageComponent implements OnInit {
         category: this.form.value.category,
         weight: this.form.value.weight,
         date: new Date(),
+        isDeleted: true,
       };
       this.productSer.create(product).subscribe(
         res => {

@@ -11,6 +11,7 @@ export interface Product {
   category?: string ;
   weight?: number ;
   date?: Date;
+  isDeleted?: boolean;
 }
 
 export interface Alert {
