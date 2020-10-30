@@ -1,8 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {OrderService} from '../../shared/services/order.service';
 import {Subscription} from 'rxjs';
-import {IDatePickerConfig} from 'ng2-date-picker/date-picker/date-picker-config.model';
-import {TDrops, TOpens} from 'ng2-date-picker/common/types/poistions.type';
+
 
 
 @Component({
@@ -38,6 +37,7 @@ export class OrderComponent implements OnInit, OnDestroy {
         this.price += this.orders[i].price;
       }
     });
+    console.log(this.selectedDate)
   }
 
   setStatus(id: number, status: string) {
@@ -62,13 +62,18 @@ export class OrderComponent implements OnInit, OnDestroy {
   changeValue(index: number) {
     this.price = 0;
     this.stat = this.statuses[index].value;
+    let filterByAll;
     const filteredOrders = this.orders.filter(order => order.status === this.stat);
-    const filterByAll = filteredOrders.filter(order => {
-      const OrderDay = new Date(order.date).getDay();
-      // @ts-ignore
-      const SelectedDay = new Date(this.selectedDate._d).getDay();
-      return OrderDay === SelectedDay;
-    });
+    if (this.selectedDate === null || this.selectedDate === undefined  ) {
+       filterByAll = filteredOrders;
+    } else {
+      filterByAll = filteredOrders.filter(order => {
+        const OrderDay = new Date(order.date).getDay();
+        // @ts-ignore
+        const SelectedDay = new Date(this.selectedDate._d).getDay();
+        return OrderDay === SelectedDay;
+      });
+    }
     for (let i = 0; i < filterByAll.length; i++) {
       this.price += filteredOrders[i].price;
     }

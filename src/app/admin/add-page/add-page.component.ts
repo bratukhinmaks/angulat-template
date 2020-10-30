@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ProductService} from '../../shared/services/product.service';
 import {AlertService} from '../../shared/services/alert.service';
@@ -10,7 +10,8 @@ import {AlertService} from '../../shared/services/alert.service';
 })
 export class AddPageComponent implements OnInit {
   form: FormGroup;
-  productAdded = false ;
+  productAdded = false;
+  imgFile: any;
 
   constructor(private productSer: ProductService, private alertService: AlertService) {
   }
@@ -34,20 +35,28 @@ export class AddPageComponent implements OnInit {
         title: this.form.value.title,
         cost: this.form.value.cost,
         description: this.form.value.description,
-        imgUrl: this.form.value.imgUrl,
+        imgUrl: this.form.value.imgs,
         category: this.form.value.category,
         weight: this.form.value.weight,
         date: new Date(),
-        isDeleted: true,
+        isDeleted: false,
       };
-      this.productSer.create(product).subscribe(
+      const formData: FormData = new FormData();
+      formData.append('image', this.imgFile);
+      formData.append('data', JSON.stringify(product));
+      this.productSer.create(formData).subscribe(
         res => {
           console.log(res);
           this.form.reset();
-          this.productAdded = true ;
+          this.productAdded = true;
         }
       );
-      this.alertService.success('Dodany nowy product')
+      this.alertService.success('Dodany nowy product');
     }
+  }
+
+  change(event: Event) {
+    // @ts-ignore
+    this.imgFile = event.target.files[0];
   }
 }

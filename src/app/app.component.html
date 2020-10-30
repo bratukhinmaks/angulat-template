@@ -1,2 +1,6 @@
 <app-alert></app-alert>
-<router-outlet></router-outlet>
+<app-preloader *ngIf="!isLoaded; else loaded"></app-preloader>
+<ng-template #loaded>
+  <router-outlet></router-outlet>
+</ng-template>
+

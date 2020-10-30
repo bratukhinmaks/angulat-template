@@ -1,4 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script:400,700|Lato:400,700|PT+Sans+Narrow:400,700')
 @import '~bootstrap/dist/css/bootstrap.min.css'
 $stickyHeight: 120px
 $stickyHeightInlineDay: 340px
@@ -6,10 +6,13 @@ $stickyHeightInlineMonth: 280px
 $stickyHeightInlineTime: 180px
 $stickyHeightInlineDayTime: 420px
 $menuWidth: 200px
+html
+  scroll-behavior: smooth
 
 .custom-container
   width: 90%
   margin: 0 auto
+
 
 small
   color: red
@@ -20,8 +23,10 @@ label
   color: #858383
 
 form
-  width: 60%
+  width: 50%
   margin: 6rem auto
+  @media screen and (max-width: 992px)
+    width: 75%
 
 .nav-item
   cursor: pointer
@@ -29,7 +34,7 @@ form
 .alert-wrapper
   position: fixed
   text-align: center
-  top: 4.5rem
+  top: 9rem
   right: 7%
   width: 15rem
   border: 1px solid #727272
@@ -43,6 +48,119 @@ form
 .green
   color: green !important
   cursor: pointer
+
+.alignleft
+  float: left
+  margin-right: 15px
+
+.alignright
+  float: right
+  margin-left: 15px
+
+.aligncenter
+  display: block
+  margin: 0 auto 15px
+
+a
+  -webkit-transition: 0.3s
+  transition: 0.3s
+  color: #212324
+
+  &:hover
+    color: #ca3d26
+
+  &:focus, &:hover
+    outline: 0
+    text-decoration: none
+
+img
+  max-width: 100%
+  height: auto
+
+h1, h2, h3, h4, h5, h6
+  margin: 0 0 15px
+  font-family: "PT Sans Narrow", sans-serif
+  font-weight: 700
+
+html
+  height: 100%
+
+body
+  height: 100%
+  color: #555
+  font-family: "Lato", sans-serif
+  font-size: 15px
+  font-weight: 400
+  letter-spacing: 0.3px
+  line-height: 1.7em
+
+a:hover
+  text-decoration: none
+
+input:-webkit-autofill
+  -webkit-box-shadow: 0 0 0 1000px white inset !important
+
+  &:hover, &:focus
+    -webkit-box-shadow: 0 0 0 1000px white inset !important
+
+.navbar-toggle
+  border: 2px solid #fff
+  border-radius: 0
+
+  .icon-bar
+    background: #fff none repeat scroll 0 0
+
+.is-sticky
+  .navbar-header .collapse
+    border: 2px solid #1a1a1a
+
+  .navbar-toggle
+    border: 2px solid #1a1a1a
+
+    .icon-bar
+      background: #1a1a1a none repeat scroll 0 0
+
+.area-title
+  margin-bottom: 60px
+
+  h2
+    color: #ca3d26
+    display: inline-block
+    font-family: "Dancing Script", cursive
+    font-size: 60px
+    letter-spacing: 2px
+    line-height: 0.8
+    margin: 0
+    padding: 0 20px 45px
+    position: relative
+    text-transform: capitalize
+
+    &::after
+      background: rgba(0, 0, 0, 0) url("assets/icons/red.png") no-repeat scroll center (center / contain)
+      bottom: 0
+      content: ""
+      height: 30px
+      left: 0
+      position: absolute
+      width: 100%
+
+.section-padding
+  padding: 100px 0
+
+.no-padding
+  padding: 0
+
+.no-margin
+  margin: 0
+
+.margin-top
+  margin-top: 40px
+
+.margin-bottom
+  margin-bottom: 40px
+
+.gray-bg
+  background: #f3f4f4
 
 .dashboard
   display: flex
@@ -74,7 +192,7 @@ form
 
   button
     width: 40%
-    margin: 2rem 0
+    margin: 1rem 0
 
 .cart
   border: 1px solid #e0e0e0
@@ -109,3 +227,209 @@ form
     font-size: 1.5rem
     margin: 20px 0
 
+.card-img-top
+    max-height: 12rem !important
+    max-width: 20rem
+
+.card
+  text-align: center
+
+.nav.nav-pills.nav-fill
+    width: 50%
+    margin: 0 auto
+    font-size: 20px
+    color: #22223e
+
+.total-price
+  color: #22223e
+  font-size: 24px
+
+.preloader
+  background: rgba(255, 255, 255, 1) none repeat scroll 0 0
+  height: 100%
+  position: fixed
+  width: 100%
+  z-index: 999999
+
+.preloader-spinner
+  -webkit-animation: 1.5s linear 0s normal none infinite running loader
+  animation: 1.5s linear 0s normal none infinite running loader
+  width: 60px
+  height: 60px
+  font-size: 35px
+  text-align: center
+  border-radius: 50%
+  position: absolute
+  left: 50%
+  margin-left: -30px
+  top: 50%
+  margin-top: -30px
+  padding-top: 12px
+  z-index: 99
+  background: #1a1a1a
+  color: #ca3d26
+
+@-webkit-keyframes loader
+  0%
+    -webkit-box-shadow: 0 0 0 0px rgba(202, 61, 38, 0)
+    box-shadow: 0 0 0 0px rgba(202, 61, 38, 0)
+
+  25%
+    -webkit-box-shadow: 0 0 0 0px rgba(202, 61, 38, 0.5), 0 0 0 10px rgba(202, 61, 38, 0.4)
+    box-shadow: 0 0 0 0px rgba(202, 61, 38, 0.5), 0 0 0 10px rgba(202, 61, 38, 0.4)
+
+  50%
+    -webkit-box-shadow: 0 0 0 10px rgba(202, 61, 38, 0.5), 0 0 0 20px rgba(202, 61, 38, 0.3)
+    box-shadow: 0 0 0 10px rgba(202, 61, 38, 0.5), 0 0 0 20px rgba(202, 61, 38, 0.3)
+
+  75%
+    -webkit-box-shadow: 0 0 0 10px rgba(202, 61, 38, 0.5), 0 0 0 10px rgba(202, 61, 38, 0.2)
+    box-shadow: 0 0 0 10px rgba(202, 61, 38, 0.5), 0 0 0 10px rgba(202, 61, 38, 0.2)
+
+  100%
+    -webkit-box-shadow: 0 0 0 0px rgba(202, 61, 38, 4)
+    box-shadow: 0 0 0 0px rgba(202, 61, 38, 4)
+
+@keyframes loader
+  0%
+    -webkit-box-shadow: 0 0 0 0px rgba(202, 61, 38, 0)
+    box-shadow: 0 0 0 0px rgba(202, 61, 38, 0)
+
+  25%
+    -webkit-box-shadow: 0 0 0 0px rgba(202, 61, 38, 0.5), 0 0 0 10px rgba(202, 61, 38, 0.4)
+    box-shadow: 0 0 0 0px rgba(202, 61, 38, 0.5), 0 0 0 10px rgba(202, 61, 38, 0.4)
+
+  50%
+    -webkit-box-shadow: 0 0 0 10px rgba(202, 61, 38, 0.5), 0 0 0 20px rgba(202, 61, 38, 0.3)
+    box-shadow: 0 0 0 10px rgba(202, 61, 38, 0.5), 0 0 0 20px rgba(202, 61, 38, 0.3)
+
+  75%
+    -webkit-box-shadow: 0 0 0 10px rgba(202, 61, 38, 0.5), 0 0 0 10px rgba(202, 61, 38, 0.2)
+    box-shadow: 0 0 0 10px rgba(202, 61, 38, 0.5), 0 0 0 10px rgba(202, 61, 38, 0.2)
+
+  100%
+    -webkit-box-shadow: 0 0 0 0px rgba(202, 61, 38, 4)
+    box-shadow: 0 0 0 0px rgba(202, 61, 38, 4)
+.menu-discount-offer .owl-dots > div
+  &.active, &:hover
+    background: #fff none repeat scroll 0 0
+
+.menus-area
+  position: relative
+
+  &.section-padding
+    padding-bottom: 60px
+
+.food-menu-list-menu
+  margin-bottom: 60px
+
+  ul
+    list-style: outside none none
+    margin: 0
+    padding: 0
+    text-align: center
+
+    li
+      border: 1px solid
+      color: #1e1e1f
+      cursor: pointer
+      display: inline-block
+      font-size: 13px
+      font-weight: 700
+      letter-spacing: 1px
+      margin: 0 2px
+      padding: 3px 10px
+      text-transform: uppercase
+      -webkit-transition: all 0.3s ease 0s
+      transition: all 0.3s ease 0s
+
+      &:hover, &.active
+        background: #ca3d26 none repeat scroll 0 0
+        border-color: #ca3d26
+        color: #fff
+
+.single-menu .single-menu-details
+  border-bottom: 1px solid #E4E4E4
+  margin-bottom: 40px
+  padding-bottom: 40px
+  padding-left: 140px
+  position: relative
+
+.food-menu-img
+  border-radius: 50%
+  height: 100px
+  left: 0
+  overflow: hidden
+  position: absolute
+  top: 0
+  width: 100px
+  -webkit-box-shadow: 0 0 0 10px #ddd
+  box-shadow: 0 0 0 10px #ddd
+
+.food-menu-details
+  color: #1e1e1f
+  padding: 0
+  text-align: inherit
+
+  h3
+    font-size: 20px
+    margin-bottom: 8px
+
+  p span
+    display: inline-block
+    width: 30%
+
+  h3 span
+    color: #ca3d26
+    float: right
+
+.menu-speacification
+  margin-bottom: 0
+
+.animated
+  -webkit-animation-duration: 1s
+  animation-duration: 1s
+  -webkit-animation-fill-mode: both
+  animation-fill-mode: both
+
+  &.infinite
+    -webkit-animation-iteration-count: infinite
+    animation-iteration-count: infinite
+
+  &.hinge
+    -webkit-animation-duration: 2s
+    animation-duration: 2s
+
+@-webkit-keyframes fadeIn
+  from
+    opacity: 0
+
+  to
+    opacity: 1
+
+@keyframes fadeIn
+  from
+    opacity: 0
+
+  to
+    opacity: 1
+
+.fadeIn
+  -webkit-animation-name: fadeIn
+  animation-name: fadeIn
+
+a.read-more
+  border: 1px solid
+  color: #ca3d26
+  display: inline-block
+  font-size: 14px
+  font-weight: 700
+  letter-spacing: 2px
+  margin-top: 30px
+  padding: 7px 23px
+  text-transform: uppercase
+
+.read-more:hover
+  background: #ca3d26
+  color: #fff
+  border-color: #ca3d26

@@ -1,15 +1,13 @@
-<div class="card mt-5" style="width: 18rem;">
-  <img [src]="product.img" class="card-img-top" [alt]="product.title">
-  <div class="card-body">
-    <h5 class="card-title">{{product.title}}</h5>
-    <p class="card-text">Cena: {{product.cost}} zł</p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Waga: {{product.weight}} gr</li>
-    <li class="list-group-item">{{product.category}}</li>
-  </ul>
-  <div class="card-buttons">
-    <button [routerLink]="['/shop',product._id]" class="btn btn-dark">Dowiedż się więcej</button>
-    <button  class="btn btn-success" (click)="addProduct(product)">Dodaj do koszyka</button>
-  </div>
+<div class="single-menu-details">
+    <div class="food-menu-img"><img [src]="product.imgUrl" [alt]="product.title"></div>
+    <div class="food-menu-details">
+      <h3>{{product.title}} <span class="menu-price">{{product.cost}} zł</span></h3>
+      <p class="menu-speacification"><span>- Waga:</span> <span>- {{product.weight}} gr</span></p>
+      <p class="menu-speacification"><span>- Lorem ipsum</span> <span>- {{product.category}}</span></p>
+      <div class="card-buttons">
+        <button [routerLink]="['/shop',product._id]" class="btn btn-dark">Dowiedż się więcej</button>
+        <button  class="btn btn-success" (click)="addProduct(product)">Dodaj do koszyka</button>
+      </div>
+    </div>
 </div>
+

@@ -1,0 +1,25 @@
+<section class="promotions-area section-padding" #promotion>
+  <div class="promotion-area-bg" data-stellar-background-ratio="0.6"></div>
+  <div class="container wow fadeIn">
+    <app-title [title]="'Promocje'"></app-title>
+    <div class="row">
+      <div class="menu-discount-offer col-md-12 col-lg-12 col-sm-12 col-xs-12">
+          <div [@inOutAnimation] [@enterAnimation] class="single-promotions" *ngFor="let promo of promos;let i = index" [hidden]="i !== currentSlide">
+            <ng-container [@enterAnimation] [@inOutAnimation]   >
+              <div class="promotions-img">
+                <img [src]="promo.img" alt="">
+              </div>
+              <div class="promotions-details">
+                <h3>{{promo.title}}</h3>
+                <p>{{promo.description}}</p>
+                <a class = 'read-more' routerLink="/shop">Zamów teraz</a>
+              </div>
+            </ng-container>
+          </div>
+        <ul class="dots">
+          <li class="dot" *ngFor="let item of promos; let i = index" (click)="currentSlide = i" [class.active] = 'currentSlide === i'><span></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

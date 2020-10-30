@@ -25,9 +25,9 @@ module.exports.createProduct = async function (req, res) {
     let response;
     try {
         if (req.file) {
-            response = await ProductService.createProduct(req.body, req.file.location, req.params.restaurantId);
+            response = await ProductService.createProduct(JSON.parse(req.body['data']), req.file.location, req.params.restaurantId);
         } else {
-            response = await ProductService.createProduct(req.body, '', req.params.restaurantId);
+            response = await ProductService.createProduct(JSON.parse(req.body['data']), '', req.params.restaurantId);
         }
         res.status(201).json(response);
     } catch (error) {
@@ -39,9 +39,9 @@ module.exports.updateProductById = async function (req, res) {
     let response;
     try {
         if (req.file) {
-            response = await ProductService.updateProduct(req.body, req.file.location, req.params.productId, req.params.restaurantId);
+            response = await ProductService.updateProduct(JSON.parse(req.body['data']), req.file.location, req.params.productId, req.params.restaurantId);
         } else {
-            response = await ProductService.updateProduct(req.body, '', req.params.productId, req.params.restaurantId);
+            response = await ProductService.updateProduct(JSON.parse(req.body['data']), '', req.params.productId, req.params.restaurantId);
         }
         res.status(201).json(response);
     } catch (error) {
@@ -60,8 +60,8 @@ module.exports.image = async function (req, res) {
 
 module.exports.deleteProductById = async function (req, res) {
     try {
-        const response = await ProductService.deleteProductById(req.params.restaurantId, req.params.productId);
-        res.status(202).json(response);
+        await ProductService.deleteProductById(req.params.restaurantId, req.params.productId);
+        res.status(204).json();
     } catch (error) {
         errorHandler(res, error);
     }

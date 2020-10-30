@@ -7,6 +7,9 @@ import {CartComponent} from './components/cart/cart.component';
 import {AlertComponent} from './components/alert/alert.component';
 import {FilterPipe} from './pipes/filter.pipe';
 import { DateFilterPipe } from './pipes/date-filter.pipe';
+import { PreloaderComponent } from './components/preloader/preloader.component';
+import { HeaderComponent } from './components/header/header.component';
+import { TitleComponent } from './components/title/title.component';
 
 const components = [
   CartComponent,
@@ -14,6 +17,10 @@ const components = [
   CartComponent,
   AlertComponent,
   FilterPipe,
+  DateFilterPipe,
+  PreloaderComponent,
+  HeaderComponent,
+  TitleComponent,
 ];
 
 const moduls = [
@@ -27,7 +34,7 @@ const moduls = [
 @NgModule({
   declarations: [
     ...components,
-    DateFilterPipe
+
   ],
   imports: [
     ...moduls
@@ -35,7 +42,6 @@ const moduls = [
   exports: [
     ...components,
     ...moduls,
-    DateFilterPipe
   ]
 })
 export class SharedModule {

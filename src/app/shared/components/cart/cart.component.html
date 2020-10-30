@@ -1,5 +1,5 @@
-<div class="container" *ngIf="cartProducts.length > 0;else empty">
-  <h3 class="text-center mt-5 mb-5">Twoje aktualne zamówienie</h3>
+<div class="container section-padding" *ngIf="cartProducts.length > 0;else empty">
+  <h3 class="text-center koszyk">Twoje aktualne zamówienie</h3>
   <div class="cart">
     <div class="cart-item" *ngFor="let prod of cartProducts; let i = index">
       <div class="cart-title">{{prod.title}}</div>

@@ -1,5 +1,5 @@
+<h2 class="text-center mt-5">Dodaj Product</h2>
 <form [formGroup]="form" (ngSubmit)="submit()">
-  <h2 class="text-center">Dodaj Product</h2>
   <div class="form-group">
     <label for="title">Nazwa</label>
     <input class="form-control" id="title" formControlName="title">
@@ -9,7 +9,7 @@
   </div>
   <div class="form-group">
     <label for="weight">Waga</label>
-    <input id="weight" class="form-control"  formControlName="weight">
+    <input id="weight" class="form-control"  formControlName="weight"  >
     <div *ngIf="form.get('weight').touched && form.get('weight').invalid" class="validation">
       <small *ngIf="form.get('weight').errors.required">Enter weight</small>
     </div>
@@ -41,7 +41,7 @@
   </div>
   <div class="form-group">
     <label for="imgUrl">Obrazek</label>
-    <input id="imgUrl" class="form-control-file" type="file" formControlName="imgUrl">
+    <input id="imgUrl" class="form-control-file" type="file" formControlName="imgUrl" (change)="change($event)">
     <div *ngIf="form.get('imgUrl').touched && form.get('imgUrl').invalid" class="validation">
       <small *ngIf="form.get('imgUrl').errors.required">Provide image</small>
     </div>

@@ -4,21 +4,25 @@ import {AboutComponent} from '../../main/components/about/about.component';
 import {MenuComponent} from '../../main/components/menu/menu.component';
 import {PhotosComponent} from '../../main/components/photos/photos.component';
 import {FingusComponent} from '../../main/components/fingus/fingus.component';
+import {PromotionComponent} from '../../main/components/promotion/promotion.component';
+import {TeamComponent} from '../../main/components/team/team.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContentService {
   components = [
-    BannerComponent,
-    AboutComponent,
-    MenuComponent,
-    PhotosComponent,
-    FingusComponent,
+    {component: BannerComponent, id: 'hero'},
+    {component: AboutComponent, id: 'about'},
+    {component: PromotionComponent, id: 'promotion'},
+    {component: MenuComponent, id: 'menu'},
+    {component: TeamComponent, id: 'team'},
+    {component: PhotosComponent, id: 'gallery'},
+    {component: FingusComponent, id: 'contact'},
   ];
   isBanner = true;
   isAbout = true;
-  isMenu = true;
+  isMain: boolean;
   isPhotos = true;
   isFingus = true;
   images: string[] = [

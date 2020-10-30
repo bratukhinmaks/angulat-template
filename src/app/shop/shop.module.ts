@@ -15,6 +15,10 @@ import { FoodComponent } from './food/food.component';
     CommonModule,
     ShopRoutingModule,
     SharedModule
+  ],
+  exports: [
+    ShopListComponent,
+    FoodComponent
   ]
 })
 export class ShopModule { }

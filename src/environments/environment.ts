@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:5000/api',
-  shopId: '5f95bf3d5693c62fec466934'
+  baseUrl: 'http://159.89.28.255/',
+  shopId: '5f95bd8bf25d344394d62ab8'
 };
 
 /*

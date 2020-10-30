@@ -15,6 +15,7 @@ export class EditPageComponent implements OnInit {
   form: FormGroup;
   product: Product;
   productChanged = false;
+  private imgFile: any;
 
   constructor(private route: ActivatedRoute, private productSer: ProductService, private router: Router, private alertServ: AlertService) {
   }
@@ -22,13 +23,14 @@ export class EditPageComponent implements OnInit {
   ngOnInit() {
 
     this.route.params.pipe(
-      concatMap(
+      switchMap(
         params => {
           return this.productSer.getById(params['id']);
         }
       )
     ).subscribe(product => {
       this.product = product;
+      console.log(product);
       this.form = new FormGroup({
         title: new FormControl(this.product.title, Validators.required),
         cost: new FormControl(this.product.cost, Validators.required),
@@ -43,26 +45,34 @@ export class EditPageComponent implements OnInit {
     if (this.form.invalid) {
       return;
     } else {
-      this.productSer.updateItem(
-        {
-          ...this.product,
-          title: this.form.value.title,
-          cost: this.form.value.cost,
-          description: this.form.value.description,
-          imgUrl: this.form.value.imgUrl,
-          category: this.form.value.category,
-          weight: this.form.value.weight,
-          date: new Date(),
-        }
-      ).subscribe(
+      const product = {
+        ...this.product,
+        title: this.form.value.title,
+        cost: this.form.value.cost,
+        description: this.form.value.description,
+        imgUrl: this.form.value.imgUrl,
+        category: this.form.value.category,
+        weight: this.form.value.weight,
+        date: new Date(),
+      };
+      const formData: FormData = new FormData();
+      if (this.imgFile !== null && this.imgFile !== undefined && this.imgFile !== '' ){
+        formData.append('image', this.imgFile);
+      }
+      formData.append('data', JSON.stringify(product));
+      this.productSer.updateItem(formData, product._id).subscribe(
         res => {
-          console.log(this.form.value);
           this.productChanged = true ;
           this.router.navigate(['/admin', 'dashboard']);
         }
       );
-      this.alertServ.success("Produkt został zmieniony")
+      this.alertServ.success('Produkt został zmieniony')
     }
+  }
+  change(event: Event) {
+
+    // @ts-ignore
+    this.imgFile = event.target.files[0];
   }
 
 }

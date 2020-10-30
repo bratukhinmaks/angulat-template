@@ -8,15 +8,22 @@ import { MenuComponent } from './components/menu/menu.component';
 import { PhotosComponent } from './components/photos/photos.component';
 import { FingusComponent } from './components/fingus/fingus.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import {PromotionComponent} from './components/promotion/promotion.component';
+import {ShopModule} from '../shop/shop.module';
+import { TeamComponent } from './components/team/team.component';
+import {RouterModule} from '@angular/router';
+
 
 
 
 @NgModule({
-  declarations: [MainPageComponent, BannerComponent, AboutComponent, MenuComponent, PhotosComponent, FingusComponent],
-    imports: [
-        CommonModule,
-        SharedModule,
-        DragDropModule
-    ]
+  declarations: [MainPageComponent, BannerComponent, AboutComponent, MenuComponent, PhotosComponent, FingusComponent, PromotionComponent, TeamComponent],
+  imports: [
+    CommonModule,
+    SharedModule,
+    DragDropModule,
+    ShopModule,
+    RouterModule,
+  ]
 })
 export class MainModule { }

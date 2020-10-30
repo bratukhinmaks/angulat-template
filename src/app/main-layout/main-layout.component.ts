@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ProductService} from '../shared/services/product.service';
+import {ContentService} from '../shared/services/content.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -9,9 +10,14 @@ import {ProductService} from '../shared/services/product.service';
 export class MainLayoutComponent implements OnInit {
   isExpanded = true;
 
-  constructor(public prodServ: ProductService) { }
+  constructor(public prodServ: ProductService, public contentServ: ContentService) { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  scroll(element: string) {
+    const item = document.getElementById(element);
+    scrollTo(0, item.offsetTop);
   }
+
 
 }

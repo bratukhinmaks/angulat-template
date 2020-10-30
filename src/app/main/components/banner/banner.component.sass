@@ -1,0 +1,62 @@
+.welcome-text-area
+  align-items: center
+  color: #fff
+  display: flex
+  position: relative
+  justify-content: center
+  padding: 300px 0
+  text-align: center
+  width: 100%
+  background: rgba(0, 0, 0, 0) url("../../../../assets/slider/slide_1.jpg") no-repeat scroll center (center / cover)
+  z-index: 2
+  &::before
+    background: #000000 url("../../../../assets/pattern.png") repeat scroll 0 0
+    content: ""
+    height: 100%
+    left: 0
+    opacity: 0.5
+    position: absolute
+    top: 0
+    bottom: 0
+    width: 100%
+    z-index: 0
+
+.welcome-text
+  font-size: 18px
+  font-weight: 700
+  letter-spacing: 2px
+  text-transform: uppercase
+  z-index: 5
+
+  h2
+    font-family: "Dancing Script", cursive
+    font-size: 82px
+    text-transform: capitalize
+
+  h1
+    font-size: 60px
+    font-weight: 300
+    letter-spacing: 2px
+    margin-bottom: 25px
+
+    span.hero-text
+      font-weight: 700
+.top-area-bg
+  background: rgba(0, 0, 0, 0) url("../../../../assets/slider/slide_1.jpg") no-repeat scroll center (center / cover)
+  height: 100%
+  left: 0
+  position: absolute
+  top: 0
+  width: 100%
+  z-index: 2
+
+  &::before
+    background: #000000 url("../../../../assets/pattern.png") repeat scroll 0 0
+    content: ""
+    height: 100%
+    left: 0
+    opacity: 0.5
+    position: absolute
+    top: 0
+    width: 100%
+    z-index: -1

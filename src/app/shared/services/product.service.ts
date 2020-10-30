@@ -35,8 +35,8 @@ export class ProductService {
     return this.http.patch(`${environment.baseUrl}/product/archive`, product );
   }
 
-  updateItem(product: Product) {
-    return this.http.patch(`${environment.baseUrl}/product/${product._id}`, product);
+  updateItem(product: any, id) {
+    return this.http.patch(`${environment.baseUrl}/product/${environment.shopId}/${id}`, product);
   }
 
   setType(cat) {

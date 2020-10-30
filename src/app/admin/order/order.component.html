@@ -1,11 +1,12 @@
 <div class="mt-5 " *ngIf="orders.length; else empty">
-  <h3 class="text-center mb-5">Zamówienia</h3>
+  <h2 class="text-center mb-5">Zamówienia</h2>
   <ul class="nav nav-pills nav-fill">
   <li class="nav-item mt-3 mb-3" *ngFor="let status of statuses ; let i = index">
     <div class="nav-link" (click)="changeValue(i)" [class.active]="stat === statuses[i].value" >{{status.text}}</div>
   </li>
   </ul>
   <div class="text-center mb-5">
+    Wyberz datę:
     <dp-date-picker [(ngModel)]="selectedDate" (onChange)="changeDate(selectedDate)"></dp-date-picker>
   </div>
   <table class="table table-hover">
@@ -47,7 +48,7 @@
     </tr>
     </tbody>
   </table>
-  <button *ngIf="stat !== null" (click)="getTotalPrice()">Get totatal price  : {{price}}</button>
+  <p class="total-price" *ngIf="stat !== null">Cena Koncowa: {{price}}</p>
 </div>
 
 <ng-template #empty>

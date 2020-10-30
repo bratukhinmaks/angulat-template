@@ -15,7 +15,7 @@ const s3 = new aws.S3({
 const storage = multerS3({
     s3: s3,
     bucket: (request, file, cb) => {
-        cb(null, `${keys.doBucketPath}/${file.restaurantId}`)
+        cb(null, `${keys.doBucketPath}/${request.params.restaurantId}`)
     },
     acl: 'public-read',
     key: (request, file, cb) => {

@@ -1,6 +1,6 @@
 
 <div class="container" *ngIf="product$ | async as product; else loading">
-  <div class="product" *ngIf="product.isDeleted">
+
     <div class="header right">
       <button routerLink="/shop" class="btn btn-dark">Back</button>
     </div>
@@ -9,6 +9,7 @@
         <h2>{{product.title}}</h2>
 
         <div class="flex-center">
+          <img [src]="product.imgUrl" alt="">
         </div>
         <div>
           <h2>Price : {{product.cost}} zl</h2>
@@ -23,7 +24,6 @@
       </div>
     </div>
   </div>
-</div>
 <ng-template #loading>
   <h1 class="text-center">Loading...</h1>
 </ng-template>

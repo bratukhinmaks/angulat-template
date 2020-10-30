@@ -1,0 +1,87 @@
+.about-area
+  background: rgba(0, 0, 0, 0) url("../../../../assets/about/home_three_about_bg.png") no-repeat scroll center (bottom / contain)
+  position: relative
+
+  &::after, &::before
+    background: rgba(0, 0, 0, 0) url("../../../../assets/icons/tri-promo-bottom-white.png") repeat scroll 0 0
+    content: ""
+    height: 7px
+    left: 0
+    position: absolute
+    top: -7px
+    -webkit-transform: rotateX(180deg)
+    transform: rotateX(180deg)
+    width: 100%
+    z-index: 9
+
+.menus-area
+  &::after, &::before
+    background: rgba(0, 0, 0, 0) url("../../../../assets/icons/tri-promo-bottom-white.png") repeat scroll 0 0
+    content: ""
+    height: 7px
+    left: 0
+    position: absolute
+    top: -7px
+    -webkit-transform: rotateX(180deg)
+    transform: rotateX(180deg)
+    width: 100%
+    z-index: 9
+
+.team-area
+  &::after, &::before
+    background: rgba(0, 0, 0, 0) url("../../../../assets/icons/tri-promo-bottom-white.png") repeat scroll 0 0
+    content: ""
+    height: 7px
+    left: 0
+    position: absolute
+    top: -7px
+    -webkit-transform: rotateX(180deg)
+    transform: rotateX(180deg)
+    width: 100%
+    z-index: 9
+
+.gallery-area::after, .footer-area::after
+  background: rgba(0, 0, 0, 0) url("../../../../assets/icons/tri-promo-bottom-white.png") repeat scroll 0 0
+  content: ""
+  height: 7px
+  left: 0
+  position: absolute
+  top: -7px
+  -webkit-transform: rotateX(180deg)
+  transform: rotateX(180deg)
+  width: 100%
+  z-index: 9
+
+.about-area::before, .menus-area::before, .team-area::before
+  bottom: -7px
+  top: auto
+  -webkit-transform: rotateX(360deg)
+  transform: rotateX(360deg)
+
+.about-author-sign
+  margin-top: 40px
+
+.big-text
+  float: left
+  font-size: 80px
+  font-weight: 700
+  margin-bottom: -4px
+  margin-right: 10px
+  line-height: 1
+
+.about-area .area-title h2
+  font-size: 80px
+  padding-bottom: 10px
+  position: relative
+
+  span
+    color: #212324
+    font-family: lato
+    font-size: 48px
+    text-transform: uppercase
+
+  &::after
+    display: none
+
+.about-content
+  color: #4a4d4f

@@ -1,0 +1,26 @@
+.mainmenu-area
+  position: relative
+  -webkit-transition: all 0.3s ease 0s
+  transition: all 0.3s ease 0s
+  z-index: 9999
+
+.is-sticky .mainmenu-area
+  -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28)
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.14), 0 4px 8px rgba(0, 0, 0, 0.28)
+  z-index: 99999
+
+.mainmenu-area::after
+  background: rgba(0, 0, 0, 0) url("../../../assets/icons/tri-promo-bottom-white.png") repeat scroll 0 0
+  bottom: -7px
+  content: ""
+  height: 7px
+  left: 0
+  opacity: 0
+  position: absolute
+  width: 100%
+
+.is-sticky .mainmenu-area::after
+  opacity: 1
+
+.shop-list-padding
+  padding-top: 8rem

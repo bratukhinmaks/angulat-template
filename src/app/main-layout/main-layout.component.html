@@ -1,22 +1,42 @@
-<nav class=" nav navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Demo</a>
-  <button class="navbar-toggler" type="button" (click)="isExpanded = !isExpanded">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div [class.collapse]='isExpanded' class="navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav justify-content-end">
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/main">Strona Główna</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/shop">Sklep</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/cart">Koszyk:{{prodServ.cartProducts.length}}</a>
-      </li>
-    </ul>
+<nav id='nav' class=" navbar navbar-expand-lg navbar-light" #element>
+  <div class="container">
+    <a class="navbar-brand" href="#">Demo</a>
+    <button class="navbar-toggler" type="button" (click)="isExpanded = !isExpanded">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div [class.collapse]='isExpanded' class="navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav justify-content-end">
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/main">Strona Główna</a>
+        </li>
+        <ng-container *ngIf="contentServ.isMain">
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" (click)="scroll('about')">O nas</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" (click)="scroll('promotion')">Promocji</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" (click)="scroll('menu')">Menu</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" (click)="scroll('team')">Team</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" (click)="scroll('contact')">Kontact</a>
+          </li>
+        </ng-container>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/shop">Sklep</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/cart">Koszyk:{{prodServ.cartProducts.length}}</a>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>
 
-  <router-outlet></router-outlet>
+
+<router-outlet></router-outlet>
 

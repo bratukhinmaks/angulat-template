@@ -11,11 +11,17 @@ import {Product} from '../../shared/models';
   styleUrls: ['./dashboard.component.sass']
 })
 export class DashboardPageComponent implements OnInit, OnDestroy {
+  statuses = [
+    {name : 'Dostępne', value : true},
+    {name : 'Nie Dostępne', value : false},
+  ]
+
   products = [];
   pSub: Subscription;
   rSub: Subscription;
   productName: string;
-  isArchived: boolean;
+  isDeleted = 'isDeleted';
+  stat= true;
 
   constructor(private prodSer: ProductService, private alertService: AlertService) {
   }
@@ -28,14 +34,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
     );
   }
 
-  ngOnDestroy(): void {
-    if (this.pSub) {
-      this.pSub.unsubscribe();
-    }
-    if (this.rSub) {
-      this.rSub.unsubscribe();
-    }
-  }
+
 
   delete(id) {
     this.rSub = this.prodSer.deleteItem(id).subscribe(
@@ -57,5 +56,18 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
       }
     );
     this.alertService.danger('Product zostal nie dostępny');
+  }
+
+  ngOnDestroy(): void {
+    if (this.pSub) {
+      this.pSub.unsubscribe();
+    }
+    if (this.rSub) {
+      this.rSub.unsubscribe();
+    }
+  }
+
+  change() {
+    this.stat = !this.stat;
   }
 }

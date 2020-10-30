@@ -31,7 +31,21 @@
               "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.sass"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/cooking.js",
+              "src/assets/js/vendor/jquery-1.12.4.min.js",
+              "src/assets/js/vendor/bootstrap.min.js",
+              "src/assets/js/vendor/jquery.easing.1.3.js",
+              "src/assets/js/owl.carousel.min.js",
+              "src/assets/js/vendor/jquery-migrate-1.2.1.min.js",
+              "src/assets/js/stellar.js",
+              "src/assets/js/jquery.mixitup.min.js",
+              "src/assets/js/wow.min.js",
+              "src/assets/js/typed.js",
+              "src/assets/js/jquery.magnific-popup.min.js",
+              "src/assets/js/jquery.sticky.js",
+              "src/assets/js/main.js"
+            ]
           },
           "configurations": {
             "production": {

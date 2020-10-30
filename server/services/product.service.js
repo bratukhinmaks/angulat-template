@@ -8,6 +8,7 @@ const Restaurant = require('../models/Restaurant')
 const Product = require('../models/Product')
 
 const SomethingNotFoundError = require('../utils/errors/SomethingNotFoundError')
+const DeleteNotPossibleError = require('../utils/errors/DeleteNotPossibleError')
 
 
 module.exports.getProducts = async function (restaurantId) {
@@ -44,12 +45,12 @@ module.exports.getProductById = async function (productId) {
 module.exports.createProduct = async function (product, fileLocation, restaurantId) {
     product.imgUrl = fileLocation;
     try {
-        return await Product(product).save(async function (err, savedObj) {
-            await Restaurant.findOneAndUpdate(
-                {"_id": ObjectId(`${restaurantId}`)},
-                {$push: {"products": savedObj}}
-            );
-        });
+        const saved = await Product(product).save();
+        await Restaurant.findOneAndUpdate(
+            {"_id": ObjectId(`${restaurantId}`)},
+            {$push: {"products": saved}}
+        );
+        return saved;
     } catch (error) {
         throw Error('Error while creating a new Product.')
     }
@@ -59,11 +60,13 @@ module.exports.updateProduct = async function (product, fileLocation, productId,
     const found = await getProductById(productId);
     if (fileLocation !== '') {
         await uploadMiddleware.deleteImageFromS3(found.imgUrl, restaurantId);
-    } else {
         product.imgUrl = fileLocation;
+    } else {
+        product.imgUrl = found.imgUrl;
     }
     try {
-        return await updateProduct(productId, product);
+        await updateProduct(productId, product);
+        return product;
     } catch (error) {
         throw Error('Error while updating a Product.')
     }
@@ -71,32 +74,40 @@ module.exports.updateProduct = async function (product, fileLocation, productId,
 
 
 module.exports.deleteProductById = async function (restaurantId, productId) {
-    let foundProduct;
-    let foundRestaurant;
-    try {
-        foundProduct = await getProductById(productId);
-        foundRestaurant = await OrderService.getOrders(restaurantId);
-        if (foundProduct.isDeleted && foundRestaurant.orders.products.filter(el => el === foundProduct).length === 0) {
-            await removeProductFromRestaurant(foundProduct, restaurantId);
-            await removeProduct(productId);
+    const foundProduct = await getProductById(productId);
+    const foundOrders = await OrderService.getOrders(restaurantId);
+
+    let productExistCount = 0;
+    foundOrders.every(function (order, index) {
+        if (productExistCount !== 0) {
+            return false;
+        } else {
+            productExistCount = order.products.filter(el => {
+                return String(el['_id']) === foundProduct['id']
+            }).length;
+            return true;
         }
-    } catch (error) {
-        throw Error('Error while delete Product with id -> ' + productId)
+    })
+
+    if (foundProduct.isDeleted && productExistCount === 0) {
+        await removeProductFromRestaurant(foundProduct, restaurantId);
+        await removeProduct(productId);
+    } else {
+        throw new DeleteNotPossibleError(`Error while deleting Product with id ->  ${productId}`, 409);
     }
 }
 
-
 module.exports.archiveProduct = async function (product) {
-  let found;
-  try {
-    found = await getProductById(product._id);
+    let found;
+    try {
+        found = await getProductById(product._id);
 
-    found.isDeleted = !found.isDeleted;
-    await updateProduct(product._id, found);
-    return found;
-  } catch (error) {
-    throw Error('Error while archiving a Product with id -> ' + productId)
-  }
+        found.isDeleted = !found.isDeleted;
+        await updateProduct(product._id, found);
+        return found;
+    } catch (error) {
+        throw Error('Error while archiving a Product with id -> ' + productId)
+    }
 }
 
 async function getProductById(productId) {
@@ -111,7 +122,7 @@ async function removeProductFromRestaurant(product, restaurantId) {
     try {
         await Restaurant.findOneAndUpdate(
             {"_id": ObjectId(`${restaurantId}`)},
-            {$pull: {"products": product}}
+            {$pull: {products: ObjectId(`${product._id}`)}}
         );
     } catch (error) {
         throw Error('Error while removing Product id -> ' + product._id + ' from Restaurant id -> ' + restaurantId)
@@ -120,7 +131,7 @@ async function removeProductFromRestaurant(product, restaurantId) {
 
 async function removeProduct(productId) {
     try {
-        await Restaurant.remove({"_id": ObjectId(`${productId}`)});
+        await Product.remove({"_id": ObjectId(`${productId}`)});
     } catch (error) {
         throw Error('Error while removing Product id -> ' + productId)
     }
@@ -128,7 +139,7 @@ async function removeProduct(productId) {
 
 async function updateProduct(productId, product) {
     try {
-        return await Product.findOneAndUpdate({"_id": ObjectId(`${productId}`)}, {"$set": product});
+        await Product.findOneAndUpdate({"_id": ObjectId(`${productId}`)}, {"$set": product});
     } catch (error) {
         throw Error('Error while updating Product id -> ' + productId)
     }

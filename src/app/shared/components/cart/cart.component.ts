@@ -4,6 +4,7 @@ import {OrderService} from '../../services/order.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Product} from '../../models';
 import {AlertService} from '../../services/alert.service';
+import {ContentService} from '../../services/content.service';
 
 @Component({
   selector: 'app-cart',
@@ -12,14 +13,16 @@ import {AlertService} from '../../services/alert.service';
 })
 export class CartComponent implements OnInit {
 
-  constructor(public prodServ: ProductService, private orderServ: OrderService, private alertService: AlertService) {
+  constructor(public prodServ: ProductService, private orderServ: OrderService, private alertService: AlertService, private content: ContentService) {
   }
 
   cartProducts: Product[] = [];
   form: FormGroup;
   price = 0;
+  productAdded: boolean;
 
   ngOnInit(): void {
+    this.content.isMain = false;
     this.form = new FormGroup({
       name: new FormControl(null, Validators.required),
       phone: new FormControl(null, Validators.required),
@@ -34,9 +37,9 @@ export class CartComponent implements OnInit {
   }
 
   removeFromCart(i) {
+    this.alertService.danger("Usunięto z koszyka");
     this.cartProducts.splice(i, 1);
     this.price -= +this.cartProducts[i].cost;
-    this.alertService.danger("Usunięto z koszyka")
   }
 
   submit() {
@@ -61,6 +64,7 @@ export class CartComponent implements OnInit {
           this.alertService.success("Zamowienie przekazane do realizacji");
           this.prodServ.cartProducts = [];
           this.cartProducts = [];
+          this.productAdded = true;
         }
       );
     }

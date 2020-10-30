@@ -1,12 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
-import {DomSanitizer} from '@angular/platform-browser';
-import {AppComponent} from '../../app.component';
-import {AboutComponent} from '../components/about/about.component';
-import {MenuComponent} from '../components/menu/menu.component';
-import {PhotosComponent} from '../components/photos/photos.component';
-import {FingusComponent} from '../components/fingus/fingus.component';
-import {BannerComponent} from '../components/banner/banner.component';
 import {ContentService} from '../../shared/services/content.service';
 
 @Component({
@@ -14,7 +7,7 @@ import {ContentService} from '../../shared/services/content.service';
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.sass']
 })
-export class MainPageComponent implements OnInit {
+export class MainPageComponent implements OnInit, AfterViewInit {
 
 
 
@@ -24,7 +17,12 @@ export class MainPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.content.isMain = true;
   }
+  ngAfterViewInit() {
+    this.content.isMain = true;
+  }
+
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.components, event.previousIndex, event.currentIndex);

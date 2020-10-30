@@ -1,21 +1,24 @@
-<div class="container">
-  <div class="form-group mt-5">
-    <input class="form-control" type="text" placeholder="Znajdż product" [(ngModel)]="productName">
-  </div>
-  <ul class="nav nav-pills nav-fill">
-    <li class="nav-item" *ngFor="let category of categories; let i = index">
-      <div class="nav-link" (click)="cat = categories[i].value" [class.active]="cat === categories[i].value" >{{category.name}}</div>
-    </li>
-  </ul>
-
-  <div class="dashboard">
-    <ng-container *ngFor="let product of products1|filter:category:cat | search:productName ">
-    <div  *ngIf="product.isDeleted"  [@fadeInOut]>
-        <app-food [@fadeInOut]  [product]="product"  class="box"></app-food>
+<section class="menus-area shop-list-padding" id="menu">
+  <div class="container wow fadeIn">
+   <app-title [title]="' Menu'"></app-title>
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="food-menu-list-menu">
+          <ul >
+            <li class="filter" *ngFor="let category of categories; let i = index">
+              <div (click)="cat = categories[i].value" [class.active]="cat === categories[i].value" >{{category.name}}</div>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-    </ng-container>
+    <div class="row food-menu-list">
+      <ng-container *ngFor="let product of products1|filter:category:cat">
+          <app-food class="col-md-6 col-lg-6 col-sm-12 col-xs-12 single-menu" *ngIf="!product.isDeleted" [product]="product" ></app-food>
+      </ng-container>
+    </div>
   </div>
-</div>
+</section>
 
 
 

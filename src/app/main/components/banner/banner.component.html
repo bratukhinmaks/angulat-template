@@ -1,8 +1,17 @@
-<div class="banner">
-  <div class="slider-item" *ngFor="let img of imgs;let i = index">
-    <ng-container *ngIf="i === currentSlide">
-    <img [src]="img">
-    </ng-container>
+<section class="welcome-text-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+        <div class="welcome-text">
+          <h2>Welcome To</h2>
+          <h1 class="cd-headline clip is-full-width">
+            <span class="hero-text">Your own </span>
+            <span class="cd-words-wrapper">
+              <b >{{typewriter_display}}</b>
+            </span>
+          </h1>
+        </div>
+      </div>
+    </div>
   </div>
-  {{currentSlide}}
-</div>
+</section>

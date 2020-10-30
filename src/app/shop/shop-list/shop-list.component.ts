@@ -3,6 +3,7 @@ import {ProductService} from '../../shared/services/product.service';
 import {Product} from '../../shared/models';
 import {Subscription} from 'rxjs';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {ContentService} from '../../shared/services/content.service';
 
 @Component({
   selector: 'app-shop-list',
@@ -30,10 +31,11 @@ export class ShopListComponent implements OnInit, OnDestroy {
   cat: string;
   category = 'category';
 
-  constructor(private prodSer: ProductService) {
+  constructor(private prodSer: ProductService, private content: ContentService) {
   }
 
   ngOnInit() {
+    this.content.isMain = false;
     this.sub = this.prodSer.getAll().subscribe((data: Product[]) => {
       this.products1 = data;
     });
