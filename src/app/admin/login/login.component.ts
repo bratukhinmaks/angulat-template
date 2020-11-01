@@ -3,6 +3,7 @@ import {Form, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../shared/services/auth.service';
 import {Subscriber, Subscription} from 'rxjs';
 import {Router} from '@angular/router';
+import {AlertService} from '../../shared/services/alert.service';
 
 
 
@@ -14,9 +15,9 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit, OnDestroy {
   form: FormGroup;
   sub: Subscription;
-  submited= false;
+  submited = false;
   erroreMessage = false;
-  constructor(private servise: AuthService, private router: Router) { }
+  constructor(private servise: AuthService, private router: Router, private alertServ: AlertService) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -47,6 +48,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.submited = false;
           console.log(error.error.code);
           this.erroreMessage = true;
+          this.alertServ.danger('Sprobuj ponownie')
         }
       );
     }

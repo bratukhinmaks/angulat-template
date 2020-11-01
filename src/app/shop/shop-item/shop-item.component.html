@@ -1,7 +1,7 @@
 
-<div class="container" *ngIf="product$ | async as product; else loading">
+<div class="container section-padding" *ngIf="product$ | async as product; else loading">
 
-    <div class="header right">
+    <div class="header right ">
       <button routerLink="/shop" class="btn btn-dark">Back</button>
     </div>
     <div class="flex">
@@ -9,7 +9,7 @@
         <h2>{{product.title}}</h2>
 
         <div class="flex-center">
-          <img [src]="product.imgUrl" alt="">
+          <img [src]="product.imgUrl" width="100px" alt="">
         </div>
         <div>
           <h2>Price : {{product.cost}} zl</h2>

@@ -17,6 +17,7 @@ import {PhotosComponent} from './main/components/photos/photos.component';
 import {ErorrInerceptore} from './shared/interceptors/error.interceptor';
 import { PromotionComponent } from './main/components/promotion/promotion.component';
 import {TeamComponent} from './main/components/team/team.component';
+import {HashLocationStrategy, LocationStrategy} from '@angular/common';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import {TeamComponent} from './main/components/team/team.component';
       provide: HTTP_INTERCEPTORS,
       useClass: ErorrInerceptore,
       multi: true,
-    }
+    },
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
   ],
   entryComponents: [BannerComponent, MenuComponent, AboutComponent, FingusComponent, PhotosComponent, PromotionComponent, TeamComponent],
   bootstrap: [AppComponent]

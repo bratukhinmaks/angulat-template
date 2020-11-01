@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Dancing+Script:400,700|Lato:400,700|PT+Sans+Narrow:400,700')
 @import '~bootstrap/dist/css/bootstrap.min.css'
+@import '~ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.min.css'
+@import '~ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.theme.default.min.css'
 $stickyHeight: 120px
 $stickyHeightInlineDay: 340px
 $stickyHeightInlineMonth: 280px
@@ -40,6 +42,11 @@ form
   border: 1px solid #727272
   border-radius: 8px
   opacity: 0.8
+  @media screen and (max-width: 768px)
+    position: relative
+    width: 100%
+    min-height: 20px
+    font-size: 18px
 
 .red
   color: red !important
@@ -310,10 +317,6 @@ input:-webkit-autofill
   100%
     -webkit-box-shadow: 0 0 0 0px rgba(202, 61, 38, 4)
     box-shadow: 0 0 0 0px rgba(202, 61, 38, 4)
-.menu-discount-offer .owl-dots > div
-  &.active, &:hover
-    background: #fff none repeat scroll 0 0
-
 .menus-area
   position: relative
 
@@ -433,3 +436,40 @@ a.read-more
   background: #ca3d26
   color: #fff
   border-color: #ca3d26
+
+.footer-social-bookmark a:hover
+  color: #ca3d26 !important
+
+.owl-theme .owl-dots .owl-dot span
+  width: 15px
+  height: 15px
+
+.owl-dots
+  margin-top: 50px !important
+
+.top-social-bookmark
+  float: right
+
+  ul
+    list-style: outside none none
+    margin: 0
+    padding: 0
+    text-align: right
+
+    li
+      display: inline
+
+      a
+        display: inline-block
+        font-size: 14px
+        height: 39px
+        margin: 0 -2.5px
+        padding: 6px
+        text-align: center
+        width: 40px
+
+        &:hover
+          color: #ca3d26
+
+      &:last-child a
+        margin-right: -5px

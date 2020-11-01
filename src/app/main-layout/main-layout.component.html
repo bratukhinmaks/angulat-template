@@ -1,6 +1,27 @@
-<nav id='nav' class=" navbar navbar-expand-lg navbar-light" #element>
+<div class="top-bar" id="top-bar" *ngIf="contentServ.isMain">
   <div class="container">
-    <a class="navbar-brand" href="#">Demo</a>
+    <div class="row">
+      <div class="col-md-7 col-lg-6 col-sm-8">
+        <div class="call-to-action">
+          <p><i class="fa fa-envelope-o"></i> <a href="mailto:info@yourrestaurant.com">info@yourrestaurant.com</a></p>
+          <p><i class="fa fa-phone"></i> <a href="tel:+48123456789">+48 123 456 789</a></p>
+        </div>
+      </div>
+      <div class="col-md-5 col-lg-6 col-sm-4">
+        <div class="top-social-bookmark">
+          <ul>
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<nav id='nav' class=" navbar navbar-expand-lg navbar-light" [ngClass]="{'sticky': !contentServ.isMain}" #nav >
+  <div class="container">
+    <a class="navbar-brand" routerLink="/main"><img [src]="isSticky ?'../../assets/main_logo.png' : '../../assets/main_logo_black.png' " alt="logo"></a>
     <button class="navbar-toggler" type="button" (click)="isExpanded = !isExpanded">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -9,33 +30,22 @@
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" routerLink="/main">Strona Główna</a>
         </li>
-        <ng-container *ngIf="contentServ.isMain">
-          <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" (click)="scroll('about')">O nas</a>
-          </li>
-          <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" (click)="scroll('promotion')">Promocji</a>
-          </li>
-          <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" (click)="scroll('menu')">Menu</a>
-          </li>
-          <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" (click)="scroll('team')">Team</a>
-          </li>
-          <li class="nav-item" routerLinkActive="active">
-            <a class="nav-link" (click)="scroll('contact')">Kontact</a>
+        <ng-container *ngIf="contentServ.isMain" >
+          <li class="nav-item" *ngFor="let nav of navs ; let i = index" [class.active]="currentSlide === i">
+            <a class="nav-link" (click)="scroll(nav.id , i)">{{nav.title}}</a>
           </li>
         </ng-container>
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" routerLink="/shop">Sklep</a>
         </li>
         <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="/cart">Koszyk:{{prodServ.cartProducts.length}}</a>
+          <a class="nav-link" routerLink="/cart">Koszyk: {{prodServ.cartProducts.length}}</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
+
 
 
 <router-outlet></router-outlet>

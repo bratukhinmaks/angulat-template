@@ -1,5 +1,5 @@
-<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-  <div class="example-box" cdkDrag *ngFor="let componet of components " [id]="componet.id">
+<div class="example-list">
+  <div class="example-box" *ngFor="let componet of components " [id]="componet.id">
     <ng-container *ngComponentOutlet="componet.component"></ng-container>
   </div>
 </div>

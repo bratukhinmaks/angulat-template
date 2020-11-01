@@ -22,7 +22,7 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -32,7 +32,6 @@
               "src/styles.sass"
             ],
             "scripts": [
-              "src/assets/js/cooking.js",
               "src/assets/js/vendor/jquery-1.12.4.min.js",
               "src/assets/js/vendor/bootstrap.min.js",
               "src/assets/js/vendor/jquery.easing.1.3.js",
@@ -57,10 +56,8 @@
               ],
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -69,6 +66,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
@@ -137,5 +138,8 @@
       }
     }
   },
-  "defaultProject": "shop-template"
+  "defaultProject": "shop-template",
+  "cli": {
+    "analytics": "07a790eb-aeab-4c40-91bc-4b791a8a14f3"
+  }
 }

@@ -3,12 +3,68 @@ nav#nav
   width: 100%
   z-index: 999
   opacity: 1
-  padding: 25px 0
-  color: black
-  background-color: white
-  box-shadow: 0 1px 4px black
+  color: white
+  background-color: transparent
+  @media screen and (max-width: 576px)
+    position: fixed
+    width: 100%
+    z-index: 999
+    opacity: 1
+    background-color: white
+    box-shadow: 0 1px 5px black
+    li
+      color: #1a1a1a
+      a
+        color: #1a1a1a
   li
-    padding: 5px 20px
-    color: #1a1a1a
-    font-size: 15px
-    font-weight: 500
+    font-size: 13px
+    font-weight: 700
+    letter-spacing: 2px
+    padding: 30px 5px 15px
+    text-transform: uppercase
+    -webkit-transition: all 0.3s ease 0s
+    transition: all 0.3s ease 0s
+    border-bottom: solid 2px transparent
+    a
+      color: white
+
+
+nav#nav.sticky
+  position: fixed
+  width: 100%
+  z-index: 999
+  opacity: 1
+  background-color: white
+  box-shadow: 0 1px 5px black
+  li.active
+    a
+      color: #ca3d26
+
+  li
+    a
+      color: #1a1a1a
+    .nav-link:hover
+      color: #ca3d26
+      border: none
+
+.top-bar
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4)
+  height: 40px
+  background: #fff
+
+.call-to-action
+  text-transform: none
+
+  a
+    letter-spacing: 1px
+
+  p
+    display: inline-block
+    margin-bottom: 0
+    margin-right: 15px
+    margin-top: 7px
+
+  i
+    margin-right: 10px
+.nav-link:hover
+  border-bottom: 1px solid white

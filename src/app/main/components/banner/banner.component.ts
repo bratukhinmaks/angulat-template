@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ContentService} from '../../../shared/services/content.service';
+import Typed from 'typed.js';
 
 @Component({
   selector: 'app-banner',
@@ -17,6 +18,16 @@ export class BannerComponent implements OnInit {
   ngOnInit() {
     this.typingCallback(this);
     this.imgs = this.content.images;
+    const options = {
+      strings: ['Cafe & Restaurant', 'Pizza House', 'Coffee House'],
+      typeSpeed: 100,
+      backSpeed: 100,
+      showCursor: true,
+      cursorChar: '|',
+      loop: true
+    };
+
+    const typed = new Typed('.typed-element', options);
   }
   typingCallback(that) {
     const total_length = that.typewriter_text.length;

@@ -41,7 +41,7 @@
       <td>
         <div [ngSwitch]="order.status" >
           <button class="btn btn-primary" *ngSwitchCase="'CONFIRMED'" (click)="setStatus(order._id, 'IN_PROGRESS')">Przyjęty</button>
-          <button class="btn btn-success" *ngSwitchCase="'IN_PROGRESS'" (click)="setStatus(order._id,'COMPLETED')" >W procesie</button>
+          <button class="btn btn-success" *ngSwitchCase="'IN_PROGRESS'" (click)="setStatus(order._id,'COMPLETED')" >W przygotowaniu</button>
           <button class="btn btn-secondary" *ngSwitchCase="'COMPLETED'" [disabled]="order.status === 'COMPLETED'">Zrobiony</button>
         </div>
       </td>

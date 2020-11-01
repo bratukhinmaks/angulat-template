@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {animate, style, transition, trigger} from '@angular/animations';
+import {OwlOptions} from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-promotion',
@@ -46,6 +47,30 @@ export class PromotionComponent implements OnInit {
   promos = [{title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', img: '../../../../assets/promotions/promo_slide_1.jpg'}, {title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', img: '../../../../assets/promotions/promo_slide_2.jpg'}, {title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit', description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', img: '../../../../assets/promotions/promo_slide_3.jpg'},
   ];
   currentSlide = 0;
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    dots: true,
+    navSpeed: 700,
+    navText: ['', ''],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 1
+      },
+      740: {
+        items: 1
+      },
+      940: {
+        items: 1
+      }
+    },
+    nav: false
+  };
 
   constructor() {
   }

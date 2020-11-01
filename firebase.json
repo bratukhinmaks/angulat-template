@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/shop-template",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

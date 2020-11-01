@@ -1,6 +1,7 @@
+
+
 jQuery(document).on('ready', function ($) {
     "use strict";
-
     $('body').scrollspy({
         target: '.bs-example-js-navbar-scrollspy',
         offset: 50
@@ -29,9 +30,13 @@ jQuery(document).on('ready', function ($) {
     $(window).on("scroll", function () {
         var $totalHeight = $(window).scrollTop();
         var $scrollToTop = $(".scrolltotop");
-        if ($totalHeight > 300) {
+        if ($totalHeight > 40) {
+           $('#top-bar').css('display','none')
+            $('#nav').addClass('sticky')
             $scrollToTop.fadeIn();
         } else {
+          $('#top-bar').css('display','block')
+          $('#nav').removeClass('sticky')
             $scrollToTop.fadeOut();
         }
         if ($totalHeight + $(window).height() === $(document).height()) {
@@ -138,7 +143,3 @@ jQuery(document).on('ready', function ($) {
     new WOW().init();
 
 }(jQuery));
-
-jQuery(window).on('load', function () {
-    $(".preloader").fadeOut(1000);
-});

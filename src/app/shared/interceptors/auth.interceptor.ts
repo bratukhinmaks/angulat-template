@@ -30,7 +30,7 @@ export class AuthInterceptore implements HttpInterceptor {
           if (error.status === 401) {
             this.auth.logout();
             this.route.navigate(['/admin', 'login']);
-            this.alertService.danger('Dupa.');
+            this.alertService.danger('Sproboj ponownie');
           }
           return throwError(error);
         })

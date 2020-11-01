@@ -24,7 +24,7 @@ export class MainPageComponent implements OnInit, AfterViewInit {
   }
 
 
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.components, event.previousIndex, event.currentIndex);
-  }
+  // drop(event: CdkDragDrop<string[]>) {
+  //   moveItemInArray(this.components, event.previousIndex, event.currentIndex);
+  // }
 }

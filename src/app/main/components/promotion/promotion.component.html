@@ -4,8 +4,9 @@
     <app-title [title]="'Promocje'"></app-title>
     <div class="row">
       <div class="menu-discount-offer col-md-12 col-lg-12 col-sm-12 col-xs-12">
-          <div [@inOutAnimation] [@enterAnimation] class="single-promotions" *ngFor="let promo of promos;let i = index" [hidden]="i !== currentSlide">
-            <ng-container [@enterAnimation] [@inOutAnimation]   >
+        <owl-carousel-o [options]="customOptions">
+          <ng-container  class="single-promotions" *ngFor="let promo of promos">
+            <ng-template carouselSlide>
               <div class="promotions-img">
                 <img [src]="promo.img" alt="">
               </div>
@@ -14,11 +15,9 @@
                 <p>{{promo.description}}</p>
                 <a class = 'read-more' routerLink="/shop">Zamów teraz</a>
               </div>
-            </ng-container>
-          </div>
-        <ul class="dots">
-          <li class="dot" *ngFor="let item of promos; let i = index" (click)="currentSlide = i" [class.active] = 'currentSlide === i'><span></span></li>
-        </ul>
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
       </div>
     </div>
   </div>
