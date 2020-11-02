@@ -12,7 +12,7 @@ import {AdminLauoutComponent} from './shared/admin-lauout.component';
 const routes: Routes = [
   {
     path: '', component: AdminLauoutComponent, children: [
-      {path: '', redirectTo: 'admin/login', pathMatch: 'full'},
+      {path: '', redirectTo: '/admin/login', pathMatch: 'full'},
       {path: 'login', component: LoginComponent},
       {path: 'add-page', component: AddPageComponent, canActivate: [AuthGuard]},
       {path: 'product/:id/edit-page', component: EditPageComponent, canActivate: [AuthGuard]},
