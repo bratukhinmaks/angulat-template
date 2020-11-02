@@ -195,11 +195,10 @@ input:-webkit-autofill
 
 .card-buttons
   display: flex
-  justify-content: space-around
 
   button
     width: 40%
-    margin: 1rem 0
+    margin: 15px 15px 0 0
 
 .cart
   border: 1px solid #e0e0e0
@@ -358,6 +357,25 @@ input:-webkit-autofill
   padding-left: 140px
   position: relative
 
+  button
+    border-radius: 0
+
+.add-to-cart
+  border: solid 1px #ca3d26
+  color: #ca3d26
+
+  &:hover
+    background: #ca3d26 none repeat scroll 0 0
+    border-color: #ca3d26
+    color: #fff
+
+.product-item
+  padding-top: 130px
+
+  .product-image
+    max-width: 500px
+    margin: 25px 0
+
 .food-menu-img
   border-radius: 50%
   height: 100px
@@ -368,6 +386,10 @@ input:-webkit-autofill
   width: 100px
   -webkit-box-shadow: 0 0 0 10px #ddd
   box-shadow: 0 0 0 10px #ddd
+
+  img
+    object-fit: cover
+    height: 100%
 
 .food-menu-details
   color: #1e1e1f

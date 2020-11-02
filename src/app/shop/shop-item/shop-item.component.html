@@ -1,29 +1,24 @@
-
-<div class="container section-padding" *ngIf="product$ | async as product; else loading">
-
-    <div class="header right ">
-      <button routerLink="/shop" class="btn btn-dark">Back</button>
+<div class="container product-item" *ngIf="product$ | async as product; else loading">
+    <div class="d-flex justify-content-between">
+      <button routerLink="/shop" class="btn btn-light">&laquo; Powrót</button>
+      <button class="btn add-to-cart" routerLink="/cart" (click)="addProduct(product)">Dodaj do koszyka</button>
     </div>
-    <div class="flex">
+    <div class="flex area-title">
       <div class="item text-center">
         <h2>{{product.title}}</h2>
-
         <div class="flex-center">
-          <img [src]="product.imgUrl" width="100px" alt="">
+          <img [src]="product.imgUrl" alt="{{product.title}}" class="product-image">
         </div>
         <div>
-          <h2>Price : {{product.cost}} zl</h2>
-          <p>{{product.weight}}</p>
-          <button class="btn-dark btn" routerLink="/cart" (click)="addProduct(product)">Add to cart</button>
+          <h3>Cena: {{product.cost}} zł</h3>
         </div>
       </div>
       <div class="item text-center mt-10">
-        <p>Weight:{{product.weight}}</p>
-        <div class="flex-center">
-        </div>
+        <p>Waga: {{product.weight}} gr</p>
+        <p><em>{{product.description}}</em></p>
       </div>
     </div>
   </div>
 <ng-template #loading>
-  <h1 class="text-center">Loading...</h1>
+  <h1 class="text-center">Ładowanie...</h1>
 </ng-template>

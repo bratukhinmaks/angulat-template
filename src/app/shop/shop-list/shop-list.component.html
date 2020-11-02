@@ -4,9 +4,9 @@
     <div class="row">
       <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
         <div class="food-menu-list-menu">
-          <ul >
+          <ul>
             <li class="filter" [class.active]="cat === categories[i].value" *ngFor="let category of categories; let i = index">
-              <div (click)="cat = categories[i].value"  >{{category.name}}</div>
+              <div (click)="cat = categories[i].value">{{category.name}}</div>
             </li>
           </ul>
         </div>
@@ -14,7 +14,7 @@
     </div>
     <div class="row food-menu-list">
       <ng-container *ngFor="let product of products1|filter:category:cat">
-          <app-food  class="col-md-6 col-lg-6 col-sm-12 col-xs-12 single-menu wow fadeIn" *ngIf="!product.isDeleted" [product]="product" ></app-food>
+          <app-food class="col-md-6 col-lg-6 col-sm-12 col-xs-12 single-menu wow fadeIn" *ngIf="!product.isDeleted" [product]="product" ></app-food>
       </ng-container>
     </div>
   </div>
